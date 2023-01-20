@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: LawyerUP_production
   username: LawyerUP
   password: <%= ENV["LAWYERUP_DATABASE_PASSWORD"] %>
