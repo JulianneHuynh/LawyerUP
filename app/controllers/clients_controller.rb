@@ -40,7 +40,7 @@ private
 
 
 def client_params
-    params.require( :client ).permit(:email, :username, :date_of_birth, :location, :legal_name)
+    params.require( :client ).permit(:email, :username, :date_of_birth, :location, :legal_name, :password)
 end
 
 

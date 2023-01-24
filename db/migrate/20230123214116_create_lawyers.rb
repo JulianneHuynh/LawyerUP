@@ -3,6 +3,7 @@ class CreateLawyers < ActiveRecord::Migration[7.0]
     create_table :lawyers do |t|
       t.string :email
       t.string :username
+      t.string :password_digest
       t.date :date_of_birth
       t.string :alma_mater
       t.string :board_certification
