@@ -2,6 +2,7 @@ import { ReactComponent as Briefcase } from "../assets/briefcase.svg";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useState } from "react";
 import Messages from "./Messages";
+import { Link } from "react-router-dom";
 
 function MessagesSide() {
 
@@ -22,7 +23,9 @@ function MessagesSide() {
 
             <Offcanvas placement={"end"} show={showMessages} onHide={handleCloseMessages}>
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>My Messages</Offcanvas.Title>
+                    <Link to="/messaging-center">
+                        <Offcanvas.Title>My Messages</Offcanvas.Title>
+                    </Link>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Messages />
