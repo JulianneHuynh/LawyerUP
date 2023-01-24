@@ -7,7 +7,7 @@ import UserWidget from "./UserWidget";
 function Header() {
     return (
         <div id="header">
-            <Link to="/home">
+            <Link to="/">
                 <Image id="logo" src={require('../assets/lawyer-up-logo.png')}/>
             </Link>
             <UserWidget />
