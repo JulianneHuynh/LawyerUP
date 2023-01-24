@@ -40,7 +40,7 @@ private
 
 
 def lawyer_params
-    params.require( :lawyer ).permit(:email, :username, :date_of_birth, :alma_mater, :board_certification, :years_in_practice, :law_firm, :location, :specialty, :legal_name)
+    params.require( :lawyer ).permit(:email, :username, :date_of_birth, :alma_mater, :board_certification, :years_in_practice, :law_firm, :location, :specialty, :legal_name, :password)
 end
 
 
