@@ -1,6 +1,7 @@
 import { ReactComponent as Briefcase } from "../assets/briefcase.svg";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useState } from "react";
+import Messages from "./Messages";
 
 function MessagesSide() {
 
@@ -24,7 +25,7 @@ function MessagesSide() {
                     <Offcanvas.Title>My Messages</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    Your messages will go here. 
+                    <Messages />
                 </Offcanvas.Body>
             </Offcanvas>
         </>
