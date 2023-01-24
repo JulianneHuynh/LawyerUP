@@ -1,6 +1,8 @@
 import { ReactComponent as TieIcon } from "../assets/tie-icon.svg";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useState } from "react";
+import Appointments from "./Appointments";
+import { Link } from "react-router-dom";
 
 function AccountSide() {
     const [showAccountInfo, setShowAccountInfo] = useState(false);
@@ -19,10 +21,13 @@ function AccountSide() {
 
             <Offcanvas placement={"end"} show={showAccountInfo} onHide={handleCloseAccountInfo}>
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>My Account</Offcanvas.Title>
+                    <Link to="/account-center">
+                        <Offcanvas.Title>My Account</Offcanvas.Title>
+                    </Link>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    Your account information will go here.
+                    <h5>Appointments</h5>
+                    <Appointments />
                 </Offcanvas.Body>
             </Offcanvas>
         </>
