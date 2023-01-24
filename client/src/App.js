@@ -1,63 +1,51 @@
+import "./App.css";
+
 import { useState, useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
+
+import Header from "./components/Header";
+import Home from "./components/Home";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
 
   return (
-    <div className="App">
-      <h1>Page Count: {count}</h1>
-    </div>
+
+    <>
+
+      <Header />
+
+      <div id="app-body">
+
+        <Switch>
+          
+          <Route path="/signin">
+            {/* <SignIn /> */}
+          </Route>
+
+          <Route path="/account-center">
+            {/* <AccountCenter /> */}
+          </Route>
+
+          <Route path="/appointment-center">
+            {/* <AppointmentCenter /> */}
+          </Route>
+
+
+          <Route path="/messaging-center">
+            {/* <MessagingCenter /> */}
+          </Route>
+
+          <Route path="/">
+            <Home />
+          </Route>
+
+        </Switch>
+
+      </div>
+
+  </>
+
   );
-}
+};
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
