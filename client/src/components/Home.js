@@ -1,17 +1,24 @@
 import SearchBar from "./SearchBar";
 import Map from "./Map";
 import SpecialtyFilter from "./SpecialtyFilter";
+import Spinner from "react-bootstrap/Spinner";
+import Marker from "./Marker";
 
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { Wrapper } from "@googlemaps/react-wrapper";
 
 import { useEffect, useState } from "react";
 
 function Home () {
 
-    const render = (status: Status) => {
-        return <h1>{status}</h1>
+    const apiKey = "AIzaSyDqQrYQMcH8E9yBZ5GVMCjLntOyqwb9SnI";
+    
+    const render = (status) => {
+        return (
+            <Spinner /> 
+        );
     };
 
+    const [map, setMap] = useState(null);
     const [pos, setPos] = useState(undefined);
 
     useEffect(() => {
@@ -25,11 +32,19 @@ function Home () {
 
     return (
         <>
-            <SearchBar />
-            <SpecialtyFilter />
-            <Wrapper apiKey={"AIzaSyDqQrYQMcH8E9yBZ5GVMCjLntOyqwb9SnI"} render={render}>
+            <SearchBar 
+                apiKey={apiKey}
+                setPos={setPos}
+            />
+            {/* <SpecialtyFilter /> */}
+            <Wrapper 
+                apiKey={apiKey} 
+                render={render}
+            >
                 <Map 
                     pos={pos}
+                    setMap={setMap}
+                    map={map}
                 />
             </Wrapper>
         </>

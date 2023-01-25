@@ -18,9 +18,10 @@ function Messages() {
         }
     ];
 
-    const renderMessageCards = messages.map((message) => {
+    const renderMessageCards = messages.map((message, i) => {
         return (
-            <MessageCard 
+            <MessageCard
+                key={i} 
                 image={message.profile_picture}
                 name={message.name}
                 message={message.message}
