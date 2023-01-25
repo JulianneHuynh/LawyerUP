@@ -18,6 +18,7 @@
 #filter-container {
   display: flex;
   justify-content: center;
+  margin: 1vh 0 0;
 }
 
 form#filter-switches {
@@ -26,16 +27,29 @@ form#filter-switches {
   gap: 5vw;
 }
 
+#google-map {
+  margin: 1.5vh;
+  height: 65vh;
+  width: 50vw;
+  border-radius: 12px;
+}
+
 #header {
   display: flex;
   box-shadow: 2px 4px 8px grey;
   width: 100%;
+  height: 100px;
   justify-content: space-between;
 }
 
 #logo {
-  padding: 4px 4px 12px;
-  height: 70px;
+  height: 75px;
+  margin: 0 3vw;
+}
+
+#logo-container {
+  display: flex;
+  align-items: center;
 }
 
 #search-bar {
@@ -47,11 +61,14 @@ form#filter-switches {
 #user-widget {
   display: flex;
   flex-direction: row;
-  align-self: center;
   align-items: center;
-  margin: 0 8px;
-  padding: 0 8px;
+  margin: 0 3vw;
   gap: 1vw;
+}
+
+.account-center-image {
+  height: 100px;
+  border-radius: 50%;
 }
 
 .form-check.form-switch {
