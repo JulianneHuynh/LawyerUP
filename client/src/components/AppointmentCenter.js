@@ -1,6 +1,10 @@
+import Appointments from "./Appointments";
+
 function AppointmentCenter() {
     return (
-        <></>
+        <>
+            <Appointments />
+        </>
     );
 };
 

@@ -3,6 +3,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { useState } from "react";
 import Messages from "./Messages";
 import { Link } from "react-router-dom";
+import Appointments from "./Appointments";
 
 function MessagesSide() {
 
@@ -19,6 +20,7 @@ function MessagesSide() {
 
     return (
         <>
+        
             <Briefcase onClick={() => handleShowMessages()} id="briefcase"/>
 
             <Offcanvas placement={"end"} show={showMessages} onHide={handleCloseMessages}>
@@ -30,7 +32,17 @@ function MessagesSide() {
                 <Offcanvas.Body>
                     <Messages />
                 </Offcanvas.Body>
+
+                <Offcanvas.Header>
+                    <Link to="/appointment-center">
+                        <Offcanvas.Title>My Appointments</Offcanvas.Title>
+                    </Link>
+                </Offcanvas.Header>
+                    <Offcanvas.Body>
+                        <Appointments />
+                    </Offcanvas.Body>
             </Offcanvas>
+
         </>
     );
 };
