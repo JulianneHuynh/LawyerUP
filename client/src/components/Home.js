@@ -8,7 +8,10 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 
 import { useEffect, useState } from "react";
 
-function Home () {
+function Home ({
+    lawyers,
+    setSelectedLawyer
+}) {
 
     const apiKey = "AIzaSyDqQrYQMcH8E9yBZ5GVMCjLntOyqwb9SnI";
     
@@ -36,16 +39,22 @@ function Home () {
                 apiKey={apiKey}
                 setPos={setPos}
             />
+
             {/* <SpecialtyFilter /> */}
+
             <Wrapper 
                 apiKey={apiKey} 
                 render={render}
             >
+
                 <Map 
                     pos={pos}
                     setMap={setMap}
                     map={map}
+                    lawyers={lawyers}
+                    setSelectedLawyer={setSelectedLawyer}
                 />
+
             </Wrapper>
         </>
     );

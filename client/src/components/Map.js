@@ -5,7 +5,9 @@ function Map(
     {
         pos,
         setMap,
-        map
+        map,
+        lawyers,
+        setSelectedLawyer
     }
 ) {
 
@@ -27,6 +29,8 @@ function Map(
             <div id="google-map" ref={ref}/>
             <Marker 
                 map={map}
+                lawyers={lawyers}
+                setSelectedLawyer={setSelectedLawyer}
             />
         </>
     );

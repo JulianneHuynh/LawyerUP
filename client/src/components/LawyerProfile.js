@@ -1,6 +1,13 @@
-function LawyerProfile() {
+function LawyerProfile({
+    selectedLawyer
+}) {
+    
+
+    
     return (
-        <></>
+        <>
+            <button>Book Appointment</button>
+        </>
     )
 };
 
