@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def create 
     user = User.create!(user_params)
-    render json: user, status: 201
+    render json: user, status: :created
   end
 
   def update 
@@ -23,19 +23,18 @@ class UsersController < ApplicationController
     render json: user, status: :accepted
   end
 
-  def destroy 
-    user = User.find( params[:id] )
-    user.destroy 
-    head :no_content
-  end
-
   def lawyer
     user = User.find( params[:id] )
-    if user.is_lawyer 
+    if user.is_lawyer?
       render json: user, status: :ok 
     else
-      render json: { errors: ['Is not a lawyer']}, status: 404
+      render json: { errors: ['User is not a lawyer']}, status: :method_not_allowed
     end
+  end
+
+  def lawyers
+    lawyers = User.where(:is_lawyer? => true)
+    render json: lawyers, status: :ok
   end
 
   private 

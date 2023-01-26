@@ -26,8 +26,8 @@ function Messages() {
                 key={i} 
                 image={message.profile_picture}
                 name={message.name}
-                message={message.message}
-                newness={message["new_message?"]}
+                message={message.body}
+                newness={message["is_new?"]}
             />
         );
     });

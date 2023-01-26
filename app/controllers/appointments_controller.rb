@@ -12,7 +12,7 @@ class AppointmentsController < ApplicationController
 
   def create 
     appointment = Appointment.create!(appointment_params)
-    render json: appointment, status: 201
+    render json: appointment, status: :created
   end
 
   def update 
@@ -41,7 +41,7 @@ class AppointmentsController < ApplicationController
     if (lawyer.is_lawyer? == true)
       render json: lawyer.meetings, status: :ok 
     else
-      render json: { errors: ['User is not a lawyer']}, status: :method_not_allowed
+      render json: { errors: ['User is not a lawyer'] }, status: :method_not_allowed
     end
   end
 
@@ -50,4 +50,5 @@ class AppointmentsController < ApplicationController
   def appointment_params
     params.permit(:date, :time, :description, :client_id, :lawyer_id)
   end
+
 end

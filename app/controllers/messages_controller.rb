@@ -1,45 +1,26 @@
 class MessagesController < ApplicationController
 
-  def index 
-    message = Message.all 
-    render json: message, status: :ok 
-  end
-
-  def show
-    message = Message.find(params[:id] )
-    render json: message, status: :ok 
-  end
-
   def create 
     message = Message.create!(message_params)
-    render json: message, status: 201
+    render json: message, status: :created
   end
 
+  def all_messages
+    user = User.find(params[:id])
+    messages = user.all_messages
+    render json: messages, status: :ok
+  end
+
+  def most_recent_message
+    user = User.find(params[:id])
+    message = user.most_recent_message
+    render json: message, status: :ok
+  end
 
   private 
 
   def message_params
     params.permit(:body, :recipient, :sender, :is_new?)
   end
-  
-end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 end
