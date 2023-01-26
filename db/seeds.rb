@@ -9,24 +9,12 @@
 puts 'Clearing Database'
 
 Appointment.destroy_all
-Client.destroy_all
-Lawyer.destroy_all
-
+User.destroy_all
+Message.destroy_all
 
 puts 'Database Cleared'
 
-
-puts 'Creating clients'
-20.times {Client.create(legal_name: Faker::Name.unique.name,
-                        username: Faker::Internet.username(specifier: 5..10),
-                        email: Faker::Internet.unique.free_email,
-                        date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 165),
-                        #<Date: 1986-03-28
-                        location: Faker::Address.full_address)}
-puts 'Cliets Created '
-
-
-puts 'Creating lawyers'
+puts 'Creating users'
 
 specialties = ["Criminal", "Family", "Labour", "Immigration", "Health Care", "Tax", "Coporate", "Business", "Administrative", "International", "Enviromental", "Constitutional", "Entertainment", "Insurance", "Property","Patent"]
 
@@ -35,31 +23,44 @@ firms = ["Cravath, Swaine & Moore LLP", "Wachtell, Lipton, Rosen & Katz", "Skadd
 
 states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
 
-20.times {Lawyer.create(legal_name: Faker::Name.unique.name,
-                        username: Faker::Internet.unique.username(specifier: 5..10),
-                        email: Faker::Internet.unique.free_email,
-                        date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 165),
-                        location: Faker::Address.full_address, 
-                        specialty: specialties.sample,
-                        alma_mater: Faker::University.name,
-                        board_certification: states.sample,
-                        law_firm: firms.sample,
-                        years_in_practice: rand(1..100), 
-                        )}
+boolean = [true, false] 
 
-puts "Lawyers Created"
+20.times {User.create(name: Faker::Name.unique.name,
+                      email: Faker::Internet.unique.free_email,
+                      date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 70),
+                      address: Faker::Address.full_address, 
+                      # :city_state
+                      profile_picture: Faker::Avatar.image,
+                      is_lawyer: boolean.sample,
+                      specialty: specialties.sample,
+                      law_firm: firms.sample,
+                      years_in_practice: rand(1..50),
+                      alma_mater: Faker::University.name,
+                      board_certification: states.sample, 
+                      password_digest: states.sample
+                      )}
 
+puts "Users Created"
+
+puts "Creating Messages"
+
+10.times {Message.create(body: Faker::TvShows::BigBangTheory.quote,
+                          recipient: User.all.sample,
+                          sender: User.all.sample,
+                          timestamp: Faker::Time.unique.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+                          is_new: boolean.sample
+                          )}
 
 puts "Creating Appointments"
 
-20.times {Appointment.create(date: Faker::Name.unique.name,
-                        time: Faker::Time.between_dates(from: Date.today - 5, to: Date.today + 5, period: :afternoon, format: :default),
-                        # #=> "Fri, 19 Oct 2018 15:17:46 -0500"
-                        description: Faker::TvShows::MichaelScott.quote,
-                        client: Client.all.sample,
-                        lawyer: Lawyer.all.sample)}
+20.times {Appointment.create(date: Faker::Date.in_date_period,
+                            time:Faker::Time.unique.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+                            #=> "15 Oct 10:48 AM"
+                            description: Faker::TvShows::MichaelScott.quote,
+                            user: User.all.sample,)}
 
 puts "Appointments created"
+
 
 puts "Done Seeding"
 

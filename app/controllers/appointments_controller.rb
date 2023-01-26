@@ -1,57 +1,52 @@
 class AppointmentsController < ApplicationController
 
-rescue_from ActiveRecord::RecordNotFound, with: :appointment_not_found
-rescue_from ActiveRecord::RecordInvalid, with: :appointment_invalid
+rescue_from ActiveRecord::RecordNotFound, with: :appointment_not_found 
+rescue_from ActiveRecord::RecordInvalid, with: :appointment_invalid 
 
-def index 
+  def index 
     appointment = Appointment.all 
-    render json: Appointment.all, status: :ok  
-end 
+    render json: Appointment.all, status: :ok 
+  end
 
-def show 
+  def show
     appointment = Appointment.find( params[:id] )
-    render json: appointment, status: :ok
-end
+    render json: appointment, serializer: AppointmentUsersSerializer, status: :ok 
+  end
 
-def create
-    appointment = Appointment.create!( appointment_params )
+  def create 
+    appointment = Appointment.create!( appointment_params)
     render json: appointment, status: 201
-end
+  end
 
-def update 
+  def update 
     appointment = Appointment.find( params[:id] )
     appointment.update!(appointment_params)
     render json: appointment, status: :accepted
-end
+  end
 
-def destroy
+  def destroy 
     appointment = Appointment.find( params[:id] )
-    appointment.destroy
+    appointment.destroy 
     head :no_content
-end
+  end
 
+  private 
 
+  def appointment_params
+    params.require( :appointment ).permit( :date, :time, :description, :client, :lawyer , :user_id, :message_id)
+  end
 
-
-
-
-
-private 
-
-
-def appointment_params
-    params.require( :appointment ).permit(:date, :time, :description)
-end
-
-
-def appointment_invalid invalid_appointment
+  def appointment_invalid invalid_appointment
     render json: { errors: invalid_appointment.record.errors.full_messages }, status: 422
-end
+  end
+
+  def appointment_not_found
+    render json: { errors: ['Appointment not found']}, status: 404
+  end
 
 
-def appointment_not_found
-    render json: { errors: ["Appointment not found"] }, status: 404
-end
+
+
 
 
 end
