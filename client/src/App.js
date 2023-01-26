@@ -8,8 +8,21 @@ import Home from "./components/Home";
 import MessagingCenter from "./components/MessagingCenter";
 import AccountCenter from "./components/AccountCenter";
 import AppointmentCenter from "./components/AppointmentCenter";
+import LawyerProfile from "./components/LawyerProfile";
 
 function App() {
+
+  const [selectedLawyer, setSelectedLawyer] = useState(0);
+
+  const lawyers = [
+      {
+          "id": 2,
+          "location": { "lat": 40.747070, "lng": -73.756290 },
+          "name": "Idris Elba",
+          "profile_picture": "https://d26oc3sg82pgk3.cloudfront.net/files/media/edit/image/9166/square_thumb%402x.jpg",
+          "specialty": "Real Estate Law"
+      }
+  ];
 
   return (
 
@@ -21,9 +34,9 @@ function App() {
 
         <Switch>
           
-          <Route path="/signin">
-            {/* <SignIn /> */}
-          </Route>
+          {/* <Route path="/signin">
+            <SignIn />
+          </Route> */}
 
           <Route path="/account-center">
             <AccountCenter />
@@ -38,8 +51,17 @@ function App() {
             <MessagingCenter />
           </Route>
 
+          <Route path="/lawyer">
+            <LawyerProfile 
+              selectedLawyer={selectedLawyer}
+            />
+          </Route>
+
           <Route path="/">
-            <Home />
+            <Home 
+              lawyers={lawyers}
+              setSelectedLawyer={setSelectedLawyer}
+            />
           </Route>
 
         </Switch>

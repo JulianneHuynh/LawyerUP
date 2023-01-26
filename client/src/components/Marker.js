@@ -1,16 +1,18 @@
-import { useState } from "react";
-
 function Marker({
     map,
     lawyers,
     setSelectedLawyer
 }) {
 
+    function thingy(thing) {
+        console.log(thing);
+    };
+
     const renderMarkers = lawyers.map((lawyer) => {
         const content = 
             `
             <div class="info-window">
-                <img src=${lawyer.profile_picture} class="profile-thumbnail"/>
+                <img src=${lawyer.profile_picture} class="thumbnail"/>
                 <h5>${lawyer.name}</h5>
                 <p>Specialty: ${lawyer.specialty}<p>
                 <a href="/lawyer">Book Consultation</a>
@@ -32,6 +34,7 @@ function Marker({
               anchor: marker,
               map,
             });
+
             setSelectedLawyer(lawyer.id);
         });
     });

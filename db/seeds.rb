@@ -28,10 +28,9 @@ puts 'Cliets Created '
 
 puts 'Creating lawyers'
 
-specialties = ["Criminal", "Family", "Labour", "Immigration", "Health Care", "Tax", "Coporate", "Business", "Administrative", "International", "Enviromental", "Constitutional", "Entertainment", "Insurance", "Property","Patent"]
+specialties = ["Criminal", "Family", "Immigration", "Tax", "Real Estate"]
 
-firms = ["Cravath, Swaine & Moore LLP", "Wachtell, Lipton, Rosen & Katz", "Skadden", "Davis Polk & Wardwell LLP", "Latham & Watkins", "Sullivan & Cromwell LLP", "Kirkland & Ellis", "Simpson Thacher & Bartlett LLP", "
-  Paul, Weiss, Rifkind, Wharton & Garrison LLP", "Gibson Dunn", "Kilpatrick Townsend", "Faegre Drinker", "Hunton Andrews Kurth LLP", "Polsinelli PC", "Blank Rome LLP"]
+firms = ["Cravath, Swaine & Moore LLP", "Wachtell, Lipton, Rosen & Katz", "Skadden", "Davis Polk & Wardwell LLP", "Latham & Watkins", "Sullivan & Cromwell LLP", "Kirkland & Ellis", "Simpson Thacher & Bartlett LLP", "Paul, Weiss, Rifkind, Wharton & Garrison LLP", "Gibson Dunn", "Kilpatrick Townsend", "Faegre Drinker", "Hunton Andrews Kurth LLP", "Polsinelli PC", "Blank Rome LLP"]
 
 states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
 

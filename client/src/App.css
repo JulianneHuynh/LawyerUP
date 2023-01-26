@@ -30,7 +30,7 @@ form#filter-switches {
 #google-map {
   margin: 1.5vh;
   height: 65vh;
-  width: 50vw;
+  width: 75vw;
   border-radius: 12px;
 }
 
@@ -55,7 +55,25 @@ form#filter-switches {
 #search-bar {
   display: flex;
   width: 50vw;
+}
+
+#search-button {
+  width: 50px;
+  height: 50px;
+}
+
+#search-button:hover {
+  border-radius: 50%;
+  box-shadow: 2px 4px 4px grey;
+  cursor: pointer;
+}
+
+#search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin: 1.25vw 1.25vw 0.5vw;
+  gap: 1vw;
 }
 
 #user-widget {
@@ -76,6 +94,12 @@ form#filter-switches {
   gap: 0.5vw;
 }
 
+.info-window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .message-name {
   font-size: large;
 }
@@ -89,6 +113,12 @@ form#filter-switches {
   font-weight: bold;
 }
 
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .profile-thumbnail {
   width: 50px;
   height: 50px;
@@ -100,4 +130,11 @@ form#filter-switches {
   border-radius: 50%;
   box-shadow: 2px 4px 4px grey;
   cursor: pointer;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  margin: 8px 8px;
+  border-radius: 50%;
 }

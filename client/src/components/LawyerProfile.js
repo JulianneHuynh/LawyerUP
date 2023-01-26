@@ -2,11 +2,11 @@ function LawyerProfile({
     selectedLawyer
 }) {
     
+    console.log(selectedLawyer);
 
-    
     return (
         <>
-            <button>Book Appointment</button>
+            <button onClick={() => console.log(selectedLawyer)}>Book Appointment</button>
         </>
     )
 };
