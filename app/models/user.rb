@@ -25,6 +25,15 @@ class User < ApplicationRecord
     last
   end
 
+
+  # .authenticate
+  #def authenticate(password)
+  #   oldPassword = BCrypt::Password.new(self.password_digest)
+  #   BCrypt::Engine.hash_secret(password, oldOassword.salt)
+  #   self.password_digest == newHash
+  #end
+  
+
   # validates :email, presence: true, uniqueness: true
 
   # validates :date_of_birth, :name, :board_certification, :specialty, presence: true 
