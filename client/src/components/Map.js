@@ -7,7 +7,8 @@ function Map(
         setMap,
         map,
         lawyers,
-        setSelectedLawyer
+        setSelectedLawyer,
+        apiKey
     }
 ) {
 
@@ -31,6 +32,7 @@ function Map(
                 map={map}
                 lawyers={lawyers}
                 setSelectedLawyer={setSelectedLawyer}
+                apiKey={apiKey}
             />
         </>
     );

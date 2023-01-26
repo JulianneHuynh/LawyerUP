@@ -1,6 +1,3 @@
 class AppointmentUsersSerializer < ActiveModel::Serializer
-  attributes  :id, :date, :time, :description, :client, :lawyer
-
-  has_many :users 
-  has_many :mesages, through: :users
+  attributes  :id, :date, :time, :description, :client_id, :lawyer_id
 end

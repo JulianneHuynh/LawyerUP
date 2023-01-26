@@ -9,13 +9,16 @@ Rails.application.routes.draw do
   delete '/signout', to: 'sessions#destroy'
 
   get '/lawyer/:id', to: 'users#lawyer'
+  get '/lawyers', to: 'users#lawyers'
 
+  get 'appointments/client/:id', to: 'appointments#client'
+  get 'appointments/lawyer/:id', to: 'appointments#lawyer'
+
+  get '/messages/all/:id', to: 'messages#all_messages'
+  get '/messages/most_recent/:id', to: 'messages#most_recent_message'
 
   get 'appointments/clients/:id', to: 'appointments#client'
   get 'appointments/lawyers/:id', to: 'appointments#lawyer'
-
-
- 
 
 
   # /message/id
@@ -23,7 +26,6 @@ Rails.application.routes.draw do
 
   # /messages/:id
   # return all messages if recipient = :id OR sender = :id
-
 
 
 end

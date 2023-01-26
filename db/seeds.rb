@@ -24,7 +24,9 @@ firms = ["Cravath, Swaine & Moore LLP", "Wachtell, Lipton, Rosen & Katz", "Skadd
 
 states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
 
-boolean = [true, false] 
+boolean = [true, false]
+
+address = ['310 Hillside Avenue, New Hyde Park, NY 11040', '109 Emerson Ave, Floral Park, NY 11001', '70 Floral Pkwy, Floral Park, NY 11001', '46 209th St, Queens, NY 11428', '1510 Terrace Blvd, New Hyde Park, NY 11040', '14 Jefferson St, New Hyde Park, NY 11040', '217th St, Flushing, NY 11361', '46-08 Springfield Blvd, Queens, NY 11361', '167-02 45th Ave, Queens, NY 11358', '215-01 Hillside Avenue, Jamaica, NY 11427', '79th Ave, Queens, NY 11367', '11 Webb Hill Rd, Great Neck, NY 11020', '63-27 253rd St, Queens, NY 11362', '57-26 156th St, Flushing, NY 11355', '57-11 162nd St, Queens, NY 11365','38th Ave, Bayside, NY 11361', '35-24 171st St, Flushing, NY 11358', '84th Ave, Jamaica, NY 11435']
 
 address = ['310 Hillside Avenue, New Hyde Park, NY 11040', '109 Emerson Ave, Floral Park, NY 11001', '70 Floral Pkwy, Floral Park, NY 11001', '46 209th St, Queens, NY 11428', '1510 Terrace Blvd, New Hyde Park, NY 11040', '14 Jefferson St, New Hyde Park, NY 11040', '217th St, Flushing, NY 11361', '46-08 Springfield Blvd, Queens, NY 11361', '167-02 45th Ave, Queens, NY 11358', '215-01 Hillside Avenue, Jamaica, NY 11427', '79th Ave, Queens, NY 11367', '11 Webb Hill Rd, Great Neck, NY 11020', '63-27 253rd St, Queens, NY 11362', '57-26 156th St, Flushing, NY 11355', '57-11 162nd St, Queens, NY 11365','38th Ave, Bayside, NY 11361', '35-24 171st St, Flushing, NY 11358', '84th Ave, Jamaica, NY 11435']
 
@@ -38,7 +40,7 @@ address = ['310 Hillside Avenue, New Hyde Park, NY 11040', '109 Emerson Ave, Flo
                       law_firm: nil,
                       years_in_practice: nil,
                       alma_mater: nil,
-                      board_certification: nil, 
+                      board_certification: nil,
                       password: "123"
                       )}
 
@@ -67,14 +69,13 @@ puts "Creating Messages"
 
 puts "Creating Appointments"
 
-20.times {Appointment.create(date: Faker::Date.in_date_period,
-                            time: "12:00 PM",
-                            description: Faker::TvShows::MichaelScott.quote,
-                            client_id: rand(1..10),
-                            lawyer_id: rand(11..20)
+20.times {Appointment.create( date: Faker::Date.in_date_period,
+                              time: "12:00 PM",
+                              description: Faker::TvShows::MichaelScott.quote,
+                              client_id: rand(1..10),
+                              lawyer_id: rand(11..20)
                             )}
 
 puts "Appointments created"
 
 puts "Done Seeding"
-
