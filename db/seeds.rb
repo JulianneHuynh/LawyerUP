@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+# source material for self referential tables: https://apugia.medium.com/rails-self-referential-tables-ac642d7d5082 
+
 puts 'Clearing Database'
 
 Appointment.destroy_all
@@ -25,42 +27,53 @@ states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Conne
 
 boolean = [true, false] 
 
-20.times {User.create(name: Faker::Name.unique.name,
+10.times{User.create( name: Faker::Name.unique.name,
                       email: Faker::Internet.unique.free_email,
                       date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 70),
                       address: Faker::Address.full_address, 
-                      # :city_state
                       profile_picture: Faker::Avatar.image,
-                      is_lawyer: boolean.sample,
+                      is_lawyer?: false,
+                      specialty: nil,
+                      law_firm: nil,
+                      years_in_practice: nil,
+                      alma_mater: nil,
+                      board_certification: nil, 
+                      password: "123"
+                      )}
+
+10.times{User.create( name: Faker::Name.unique.name,
+                      email: Faker::Internet.unique.free_email,
+                      date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 75),
+                      address: Faker::Address.full_address,
+                      profile_picture: Faker::Avatar.image,
+                      is_lawyer?: true,
                       specialty: specialties.sample,
                       law_firm: firms.sample,
-                      years_in_practice: rand(1..50),
                       alma_mater: Faker::University.name,
-                      board_certification: states.sample, 
-                      password_digest: states.sample
+                      board_certification: states.sample,
+                      password: "123"
                       )}
 
 puts "Users Created"
 
 puts "Creating Messages"
 
-10.times {Message.create(body: Faker::TvShows::BigBangTheory.quote,
-                          recipient: User.all.sample,
-                          sender: User.all.sample,
-                          timestamp: Faker::Time.unique.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
-                          is_new: boolean.sample
+10.times {Message.create( body: Faker::TvShows::BigBangTheory.quote,
+                          recipient_id: rand(1..20),
+                          sender_id: rand(1..20),
+                          is_new?: boolean.sample 
                           )}
 
 puts "Creating Appointments"
 
 20.times {Appointment.create(date: Faker::Date.in_date_period,
-                            time:Faker::Time.unique.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
-                            #=> "15 Oct 10:48 AM"
+                            time: "12:00 PM",
                             description: Faker::TvShows::MichaelScott.quote,
-                            user: User.all.sample,)}
+                            client_id: rand(1..10),
+                            lawyer_id: rand(11..20)
+                            )}
 
 puts "Appointments created"
-
 
 puts "Done Seeding"
 

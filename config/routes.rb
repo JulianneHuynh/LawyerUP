@@ -1,11 +1,23 @@
 Rails.application.routes.draw do
+  resources :users 
   resources :appointments
-  resources :users
-  resources :messages
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :messages, only: [:index, :show, :create]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get '/lawyer/:id', to: 'users#lawyer'
 
-  get '/lawyers/:id', to: 'users#lawyer'
+
+  get 'appointments/clients/:id', to: 'appointments#client'
+  get 'appointments/lawyers/:id', to: 'appointments#lawyer'
+
+  # get 'message/:id', to: 'message#sequence'
+
+# I'm not sure how to go about this. I'm going to ask Princeton in the morning
+  # /message/id
+  # return most recent message if recipient = :id OR sender = :id
+
+  # /messages/:id
+  # return all messages if recipient = :id OR sender = :id
+
+
+
 end

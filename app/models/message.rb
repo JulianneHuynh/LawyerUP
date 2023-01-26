@@ -1,7 +1,6 @@
 class Message < ApplicationRecord
-  
-  has_many :appointments
-  has_many :users, through: :appointments
+  belongs_to :sender, class_name: "User"
+  belongs_to :recipient, class_name: "User"
 
-  validates :body, :sender, :recipient, presence: true
+  # validates :body, :sender, :recipient, presence: true
 end

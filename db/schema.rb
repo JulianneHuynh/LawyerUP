@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_25_222148) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_26_140509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,22 +18,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_222148) do
     t.string "date"
     t.string "time"
     t.text "description"
-    t.integer "client"
-    t.integer "lawyer"
-    t.bigint "user_id", null: false
-    t.bigint "message_id", null: false
+    t.integer "client_id"
+    t.integer "lawyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["message_id"], name: "index_appointments_on_message_id"
-    t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
-    t.integer "recipient"
-    t.integer "sender"
-    t.datetime "timestamp"
-    t.boolean "is_new"
+    t.integer "recipient_id"
+    t.integer "sender_id"
+    t.boolean "is_new?"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,9 +38,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_222148) do
     t.string "email"
     t.date "date_of_birth"
     t.string "address"
-    t.string "city_state"
     t.string "profile_picture"
-    t.boolean "is_lawyer"
+    t.boolean "is_lawyer?"
     t.string "specialty"
     t.string "law_firm"
     t.string "years_in_practice"
@@ -56,6 +50,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_222148) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "appointments", "messages"
-  add_foreign_key "appointments", "users"
 end

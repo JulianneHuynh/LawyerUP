@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-
-rescue_from ActiveRecord::RecordNotFound, with: :user_not_found 
-rescue_from ActiveRecord::RecordInvalid, with: :user_invalid 
+  skip_before_action :authorized_user, only:[:create]
 
   def index 
     user = User.all 
@@ -9,17 +7,18 @@ rescue_from ActiveRecord::RecordInvalid, with: :user_invalid
   end
 
   def show
-    user = User.find( params[:id] )
-    render json: user, serializer: UserAppointmentsSerializer, status: :ok 
+    # user = User.find( params[:id] )
+    user = current_user
+    render json: user, status: :ok 
   end
 
   def create 
-    user = User.create!( user_params)
+    user = User.create!(user_params)
     render json: user, status: 201
   end
 
   def update 
-    user = User.find( params[:id] )
+    user = User.find(params[:id] )
     user.update!(user_params)
     render json: user, status: :accepted
   end
@@ -43,28 +42,6 @@ rescue_from ActiveRecord::RecordInvalid, with: :user_invalid
   private 
 
   def user_params
-    params.require( :user ).permit( :name, :email, :date_of_birth, :address, :city_state, :profile_picture, :is_lawyer, :specialty, :law_firm, :years_in_practice, :alma_mater, :board_certification, :password_digest )
+    params.permit(:name, :email, :date_of_birth, :address, :profile_picture, :is_lawyer?, :specialty, :law_firm, :years_in_practice, :alma_mater, :board_certification)
   end
-
-  def user_invalid invalid_user
-    render json: { errors: invalid_user.record.errors.full_messages }, status: 422
-  end
-
-  def user_not_found
-    render json: { errors: ['User not found']}, status: 404
-  end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
