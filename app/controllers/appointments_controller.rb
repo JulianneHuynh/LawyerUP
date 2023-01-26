@@ -30,6 +30,25 @@ rescue_from ActiveRecord::RecordInvalid, with: :appointment_invalid
     head :no_content
   end
 
+  def client
+    appointment = Appointment.find( params[:id] )
+    if appointment.client 
+      render json: appointment, status: :ok 
+    else
+      render json: { errors: ['client message not found']}, status: 404
+    end
+  end
+
+  def lawyer
+    appointment = Appointment.find( params[:id] )
+    if appointment.lawyer 
+      render json: appointment, status: :ok 
+    else
+      render json: { errors: ['lawyer message not found']}, status: 404
+    end
+  end
+
+
   private 
 
   def appointment_params
