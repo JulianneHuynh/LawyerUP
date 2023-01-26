@@ -1,18 +1,28 @@
 class User < ApplicationRecord
 
-  has_many :lawyers, :through => :appointments
-  has_many :clients, :through => :appointments
+  has_secure_password
 
-  validates :email, presence: true, uniqueness: true
+  # has_many :appointments
 
-  validates :date_of_birth, :name, :board_certification, :specialty, presence: true 
-  validate :validate_date_of_birth 
+  has_many :my_appointments, class_name: "Appointment", foreign_key: "client_id"
+  has_many :meetings, class_name: "Appointment", foreign_key: "lawyer_id"
 
-  private 
+  has_many :lawyers, through: :my_appointments, source: :lawyer
+  has_many :clients, through: :meetings, source: :client
 
-  def validate_date_of_birth
-    if date_of_birth.present? && date_of_birth > 18.years.ago.to_i
-      errors.add( :date_of_birth, 'Must e 18 years of age to sign up!' ) 
-    end
-  end
+  has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
+  has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
+
+  # validates :email, presence: true, uniqueness: true
+
+  # validates :date_of_birth, :name, :board_certification, :specialty, presence: true 
+  # validate :validate_date_of_birth 
+
+  # private 
+
+  # def validate_date_of_birth
+  #   if date_of_birth.present? && date_of_birth > 18.years.ago.to_i
+  #     errors.add( :date_of_birth, 'Must e 18 years of age to sign up!' ) 
+  #   end
+  # end
 end

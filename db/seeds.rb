@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+# source material for self referential tables: https://apugia.medium.com/rails-self-referential-tables-ac642d7d5082 
+
 puts 'Clearing Database'
 
 Appointment.destroy_all
@@ -57,8 +59,8 @@ puts "Users Created"
 puts "Creating Messages"
 
 10.times {Message.create( body: Faker::TvShows::BigBangTheory.quote,
-                          recipient: rand(1..20),
-                          sender: rand(1..20),
+                          recipient_id: rand(1..20),
+                          sender_id: rand(1..20),
                           is_new?: boolean.sample 
                           )}
 
@@ -67,8 +69,8 @@ puts "Creating Appointments"
 20.times {Appointment.create(date: Faker::Date.in_date_period,
                             time: "12:00 PM",
                             description: Faker::TvShows::MichaelScott.quote,
-                            client_id: rand(11..20),
-                            lawyer_id: rand(1..10)
+                            client_id: rand(1..10),
+                            lawyer_id: rand(11..20)
                             )}
 
 puts "Appointments created"
