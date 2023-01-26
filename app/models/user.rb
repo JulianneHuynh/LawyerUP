@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
-  has_many :appointments, dependent: :destroy
-  has_many :messages, through: :appointments
+  has_many :lawyers, :through => :appointments
+  has_many :clients, :through => :appointments
 
   validates :email, presence: true, uniqueness: true
 

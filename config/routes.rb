@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :appointments
   resources :messages, only: [:index, :show, :create]
 
-  get '/lawyers/:id', to: 'users#lawyer'
+  get '/lawyer/:id', to: 'users#lawyer'
 
 
   get 'appointments/clients/:id', to: 'appointments#client'
