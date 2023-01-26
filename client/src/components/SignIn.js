@@ -18,7 +18,7 @@ function SignIn() {
             email, 
             password
         }
-        
+        // signs user in 
         fetch(`/signin`, {
             method:'POST',
             header:{'Content-Type': 'application/json'}, 
@@ -28,6 +28,7 @@ function SignIn() {
             if(res.ok){
                 res.json().then(user => {
                     history.push(`/users/${user.id}`)
+                    updateUser(user)
                 })
             }else {
                 res.json().then(json => setErrors(json.error))
