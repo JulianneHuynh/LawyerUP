@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get '/lawyer/:id', to: 'users#lawyer'
 
 
-  get 'appointments/clients/:id', to: 'appointments#client'
-  get 'appointments/lawyers/:id', to: 'appointments#lawyer'
+  get 'appointments/client/:id', to: 'appointments#client'
+  get 'appointments/lawyer/:id', to: 'appointments#lawyer'
 
   # get 'message/:id', to: 'message#sequence'
 

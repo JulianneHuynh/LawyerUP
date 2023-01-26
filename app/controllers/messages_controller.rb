@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
 
-
   def index 
     message = Message.all 
     render json: message, status: :ok 
@@ -22,6 +21,8 @@ class MessagesController < ApplicationController
   def message_params
     params.permit(:body, :recipient, :sender, :is_new?)
   end
+  
+end
 
 
 

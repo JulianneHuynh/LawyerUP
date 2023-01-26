@@ -28,20 +28,20 @@ class AppointmentsController < ApplicationController
   end
 
   def client
-    appointment = Appointment.find( params[:id] )
-    if appointment.client 
-      render json: appointment, status: :ok 
+    client = User.find(params[:id])
+    if (client.is_lawyer? == false)
+      render json: client.my_appointments, status: :ok 
     else
-      render json: { errors: ['client message not found']}, status: 404
+      render json: { errors: ['User is not a client'] }, status: :method_not_allowed
     end
   end
 
   def lawyer
-    appointment = Appointment.find( params[:id] )
-    if appointment.lawyer 
-      render json: appointment, status: :ok 
+    lawyer = User.find( params[:id] )
+    if (lawyer.is_lawyer? == true)
+      render json: lawyer.meetings, status: :ok 
     else
-      render json: { errors: ['lawyer message not found']}, status: 404
+      render json: { errors: ['User is not a lawyer']}, status: :method_not_allowed
     end
   end
 

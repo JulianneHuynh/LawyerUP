@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  skip_before_action :authorized_user, only:[:create]
+  # skip_before_action :authorized_user
 
   def index 
     user = User.all 
-    render json: User.all, status: :ok 
+    render json: user, status: :ok 
   end
 
   def show
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def update 
-    user = User.find(params[:id] )
+    user = User.find(params[:id])
     user.update!(user_params)
     render json: user, status: :accepted
   end
@@ -28,7 +28,6 @@ class UsersController < ApplicationController
     user.destroy 
     head :no_content
   end
-
 
   def lawyer
     user = User.find( params[:id] )
@@ -44,4 +43,5 @@ class UsersController < ApplicationController
   def user_params
     params.permit(:name, :email, :date_of_birth, :address, :profile_picture, :is_lawyer?, :specialty, :law_firm, :years_in_practice, :alma_mater, :board_certification)
   end
+
 end

@@ -36,7 +36,7 @@ boolean = [true, false]
                       law_firm: nil,
                       years_in_practice: nil,
                       alma_mater: nil,
-                      board_certification: nil, 
+                      board_certification: nil,
                       password: "123"
                       )}
 

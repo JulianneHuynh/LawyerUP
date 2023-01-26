@@ -6,16 +6,17 @@ class ApplicationController < ActionController::API
   # TO DO: make sure users cant delete/update things that arent theres 
 
   # before_action 
-  before_action :authorized_user
+  # before_action :authorized_user
 
   # current_user and authorized_user 
+  
   def current_user
     user = User.find_by(id:session[:user_id])
   end 
 
-  def authorized_user
-      render json:{error:"Not Authorized"}, status: :unauthorized unless current_user
-  end 
+  # def authorized_user
+  #     render json: {error:"Not Authorized"}, status: :unauthorized unless current_user
+  # end 
 
   private
 

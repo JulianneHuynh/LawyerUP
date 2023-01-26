@@ -1,3 +1,3 @@
 class MessageSerializer < ActiveModel::Serializer
-  attributes :id, :body, :recipient, :sender, :timestamp, :is_new
+  attributes :id, :body, :recipient_id, :sender_id, :is_new?
 end
