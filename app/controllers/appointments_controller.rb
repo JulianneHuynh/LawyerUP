@@ -1,57 +1,53 @@
 class AppointmentsController < ApplicationController
 
-rescue_from ActiveRecord::RecordNotFound, with: :appointment_not_found
-rescue_from ActiveRecord::RecordInvalid, with: :appointment_invalid
-
-def index 
+  def index 
     appointment = Appointment.all 
-    render json: Appointment.all, status: :ok  
-end 
+    render json: appointment, status: :ok 
+  end
 
-def show 
-    appointment = Appointment.find( params[:id] )
-    render json: appointment, status: :ok
-end
+  def show
+    appointment = Appointment.find(params[:id])
+    render json: appointment, status: :ok 
+  end
 
-def create
-    appointment = Appointment.create!( appointment_params )
+  def create 
+    appointment = Appointment.create!(appointment_params)
     render json: appointment, status: 201
-end
+  end
 
-def update 
-    appointment = Appointment.find( params[:id] )
+  def update 
+    appointment = Appointment.find(params[:id])
     appointment.update!(appointment_params)
     render json: appointment, status: :accepted
-end
+  end
 
-def destroy
+  def destroy 
     appointment = Appointment.find( params[:id] )
-    appointment.destroy
+    appointment.destroy 
     head :no_content
-end
+  end
 
+  def client
+    appointment = Appointment.find( params[:id] )
+    if appointment.client 
+      render json: appointment, status: :ok 
+    else
+      render json: { errors: ['client message not found']}, status: 404
+    end
+  end
 
+  def lawyer
+    appointment = Appointment.find( params[:id] )
+    if appointment.lawyer 
+      render json: appointment, status: :ok 
+    else
+      render json: { errors: ['lawyer message not found']}, status: 404
+    end
+  end
 
+  private 
 
-
-
-
-private 
-
-
-def appointment_params
-    params.require( :appointment ).permit(:date, :time, :description)
-end
-
-
-def appointment_invalid invalid_appointment
-    render json: { errors: invalid_appointment.record.errors.full_messages }, status: 422
-end
-
-
-def appointment_not_found
-    render json: { errors: ["Appointment not found"] }, status: 404
-end
-
-
+  def appointment_params
+    params.permit(:date, :time, :description, :client_id, :lawyer_id)
+  end
 end

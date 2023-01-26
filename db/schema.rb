@@ -10,50 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_24_195254) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_26_140509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
     t.string "date"
-    t.string "username"
     t.string "time"
     t.text "description"
-    t.bigint "client_id", null: false
-    t.bigint "lawyer_id", null: false
+    t.integer "client_id"
+    t.integer "lawyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_appointments_on_client_id"
-    t.index ["lawyer_id"], name: "index_appointments_on_lawyer_id"
   end
 
-  create_table "clients", force: :cascade do |t|
-    t.string "email"
-    t.string "username"
-    t.date "date_of_birth"
-    t.string "location"
-    t.string "legal_name"
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "recipient_id"
+    t.integer "sender_id"
+    t.boolean "is_new?"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
   end
 
-  create_table "lawyers", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
+    t.string "name"
     t.string "email"
-    t.string "username"
     t.date "date_of_birth"
+    t.string "address"
+    t.string "profile_picture"
+    t.boolean "is_lawyer?"
+    t.string "specialty"
+    t.string "law_firm"
+    t.string "years_in_practice"
     t.string "alma_mater"
     t.string "board_certification"
-    t.string "years_in_practice"
-    t.string "law_firm"
-    t.string "location"
-    t.string "specialty"
-    t.string "legal_name"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
   end
 
-  add_foreign_key "appointments", "clients"
-  add_foreign_key "appointments", "lawyers"
 end
