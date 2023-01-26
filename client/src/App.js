@@ -5,6 +5,9 @@ import { Switch, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Home from "./components/Home";
+import MessagingCenter from "./components/MessagingCenter";
+import AccountCenter from "./components/AccountCenter";
+import AppointmentCenter from "./components/AppointmentCenter";
 
 function App() {
 
@@ -23,16 +26,16 @@ function App() {
           </Route>
 
           <Route path="/account-center">
-            {/* <AccountCenter /> */}
+            <AccountCenter />
           </Route>
 
           <Route path="/appointment-center">
-            {/* <AppointmentCenter /> */}
+            <AppointmentCenter />
           </Route>
 
 
           <Route path="/messaging-center">
-            {/* <MessagingCenter /> */}
+            <MessagingCenter />
           </Route>
 
           <Route path="/">
