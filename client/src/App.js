@@ -13,16 +13,23 @@ import LawyerProfile from "./components/LawyerProfile";
 function App() {
 
   const [selectedLawyer, setSelectedLawyer] = useState(0);
+  const [lawyers, setLawyers] = useState([]);
 
-  const lawyers = [
-      {
-          "id": 2,
-          "location": { "lat": 40.747070, "lng": -73.756290 },
-          "name": "Idris Elba",
-          "profile_picture": "https://d26oc3sg82pgk3.cloudfront.net/files/media/edit/image/9166/square_thumb%402x.jpg",
-          "specialty": "Real Estate Law"
-      }
-  ];
+  // const lawyers = [
+  //     {
+  //         "id": 2,
+  //         "location": { "lat": 40.747070, "lng": -73.756290 },
+  //         "name": "Idris Elba",
+  //         "profile_picture": "https://d26oc3sg82pgk3.cloudfront.net/files/media/edit/image/9166/square_thumb%402x.jpg",
+  //         "specialty": "Real Estate Law"
+  //     }
+  // ];
+
+  useEffect(() => {
+    fetch("http://localhost:3000/lawyers")
+    .then(res => res.json())
+    .then((lawyerArray) => setLawyers(lawyerArray))
+  }, [])
 
   return (
 

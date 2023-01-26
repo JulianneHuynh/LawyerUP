@@ -1,6 +1,6 @@
-import React,  {useState} from 'react'
-import {useHistory} from 'react-router-dom'
-// import {Form} from '../styled/Form'
+import React,  {useState} from 'react';
+import {useHistory} from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
 
 function SignupLawyer() {
   const [formData, setFormData] = useState({

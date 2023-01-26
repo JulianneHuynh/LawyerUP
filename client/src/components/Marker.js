@@ -1,14 +1,32 @@
+import { useState } from "react";
+
 function Marker({
     map,
     lawyers,
-    setSelectedLawyer
+    setSelectedLawyer,
+    apiKey
 }) {
 
-    function thingy(thing) {
-        console.log(thing);
+    const [lawyerCoords, setLawyerCoords] = useState({});
+    
+    function format(string) {
+        let forURL = string.split(" ");
+        let formatted = forURL.join("+");
+        
+        console.log(formatted);
+        fetchCoords(formatted);
+    };
+
+    function fetchCoords(formatted) {
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formatted}&key=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            setLawyerCoords(data["results"][0]["geometry"]["location"]);
+        });
     };
 
     const renderMarkers = lawyers.map((lawyer) => {
+
         const content = 
             `
             <div class="info-window">
@@ -20,7 +38,7 @@ function Marker({
             `
 
         const marker = new window.google.maps.Marker({
-            position: lawyer.location,
+            position: lawyerCoords,
             map: map
         });
 
@@ -41,6 +59,7 @@ function Marker({
 
     return (
         <>
+            {console.log(lawyerCoords)}
             {renderMarkers}
         </>
     );

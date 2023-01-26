@@ -53,6 +53,7 @@ function Home ({
                     map={map}
                     lawyers={lawyers}
                     setSelectedLawyer={setSelectedLawyer}
+                    apiKey={apiKey}
                 />
 
             </Wrapper>
