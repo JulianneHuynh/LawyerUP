@@ -28,10 +28,12 @@ boolean = [true, false]
 
 address = ['310 Hillside Avenue, New Hyde Park, NY 11040', '109 Emerson Ave, Floral Park, NY 11001', '70 Floral Pkwy, Floral Park, NY 11001', '46 209th St, Queens, NY 11428', '1510 Terrace Blvd, New Hyde Park, NY 11040', '14 Jefferson St, New Hyde Park, NY 11040', '217th St, Flushing, NY 11361', '46-08 Springfield Blvd, Queens, NY 11361', '167-02 45th Ave, Queens, NY 11358', '215-01 Hillside Avenue, Jamaica, NY 11427', '79th Ave, Queens, NY 11367', '11 Webb Hill Rd, Great Neck, NY 11020', '63-27 253rd St, Queens, NY 11362', '57-26 156th St, Flushing, NY 11355', '57-11 162nd St, Queens, NY 11365','38th Ave, Bayside, NY 11361', '35-24 171st St, Flushing, NY 11358', '84th Ave, Jamaica, NY 11435']
 
+address = ['310 Hillside Avenue, New Hyde Park, NY 11040', '109 Emerson Ave, Floral Park, NY 11001', '70 Floral Pkwy, Floral Park, NY 11001', '46 209th St, Queens, NY 11428', '1510 Terrace Blvd, New Hyde Park, NY 11040', '14 Jefferson St, New Hyde Park, NY 11040', '217th St, Flushing, NY 11361', '46-08 Springfield Blvd, Queens, NY 11361', '167-02 45th Ave, Queens, NY 11358', '215-01 Hillside Avenue, Jamaica, NY 11427', '79th Ave, Queens, NY 11367', '11 Webb Hill Rd, Great Neck, NY 11020', '63-27 253rd St, Queens, NY 11362', '57-26 156th St, Flushing, NY 11355', '57-11 162nd St, Queens, NY 11365','38th Ave, Bayside, NY 11361', '35-24 171st St, Flushing, NY 11358', '84th Ave, Jamaica, NY 11435']
+
 10.times{User.create( name: Faker::Name.unique.name,
                       email: Faker::Internet.unique.free_email,
                       date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 70),
-                      address: Faker::Address.full_address, 
+                      address: address.sample, 
                       profile_picture: Faker::Avatar.image,
                       is_lawyer?: false,
                       specialty: nil,
