@@ -12,9 +12,10 @@ function Appointments() {
         }
     ];
 
-    const renderAppointmentCards = appointments.map((appointment) => {
+    const renderAppointmentCards = appointments.map((appointment, i) => {
         return (
-            <AppointmentCard 
+            <AppointmentCard
+                key={i}
                 image={appointment.profile_picture}
                 name={appointment.name}
                 date={appointment.date}
