@@ -3,19 +3,19 @@ import { useHistory } from 'react-router'
 
 function SignIn() {
     const [formData, setFormData] = useState({
-        username:'',
+        email:'',
         password:''
     })
 
     const [errors, setErrors] =usuState([])
     const history = useHistory()
 
-    const {username, email, password} = 
+    const {email, password} = 
     
     function onSubmit(e){
         e.preventDefault()
         const user = {
-            username, 
+            email, 
             password
         }
         
@@ -36,16 +36,16 @@ function SignIn() {
     }
 
     const handleChange = (e) => {
-        const { username, value } = e.target
-        setFormData({...formData, [username]:value })
+        const { email, value } = e.target
+        setFormData({...formData, [email]:value })
     }
     return (
         <>
         <Form onSubmit={onSubmit}>
         <label>
-        Username
+        Email
         </label>
-        <input type='text' name='username' value={username} onChange={handleChange} />
+        <input type='text' name='email' value={email} onChange={handleChange} />
         
         <label>
         Password

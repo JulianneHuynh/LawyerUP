@@ -13,6 +13,13 @@ class User < ApplicationRecord
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
 
+  # .authenticate
+  #def authenticate(password)
+  #   oldPassword = BCrypt::Password.new(self.password_digest)
+  #   BCrypt::Engine.hash_secret(password, oldOassword.salt)
+  #   self.password_digest == newHash
+  #end
+  
   # validates :email, presence: true, uniqueness: true
 
   # validates :date_of_birth, :name, :board_certification, :specialty, presence: true 

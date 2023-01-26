@@ -39,9 +39,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def signin 
+    user = User.find_by(email:params[:email])
+    if user && user.authenticate(params[:password])
+      # 
+      render json: user, states: :ok
+    else 
+      render json: {errors: 'Invalid Email or Password'}, status: 401
+      # 401 unauthorized
+  end
+
   private 
 
   def user_params
-    params.permit(:name, :email, :date_of_birth, :address, :profile_picture, :is_lawyer?, :specialty, :law_firm, :years_in_practice, :alma_mater, :board_certification)
+    params.permit( :name, :email, :date_of_birth, :address, :city_state, :profile_picture, :is_lawyer, :specialty, :law_firm, :years_in_practice, :alma_mater, :board_certification, :password)
   end
 end
