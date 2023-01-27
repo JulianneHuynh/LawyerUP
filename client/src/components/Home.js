@@ -1,9 +1,6 @@
 import SearchBar from "./SearchBar";
 import Map from "./Map";
-import SpecialtyFilter from "./SpecialtyFilter";
 import Spinner from "react-bootstrap/Spinner";
-import Marker from "./Marker";
-import SignIn from "./SignIn";
 
 import { Wrapper } from "@googlemaps/react-wrapper";
 

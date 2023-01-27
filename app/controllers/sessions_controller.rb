@@ -2,7 +2,8 @@ class SessionsController < ApplicationController
 skip_before_action :authorized_user, only:[:create]
 
   def create
-    user = USer.find_by(email:params[:email])
+    user = User.find_by(email: params[:email])
+    # debugger
     if user&.authenticate(params[:password])
        session[:user_id] = user.id
        render json: user, status: :ok 
@@ -10,7 +11,6 @@ skip_before_action :authorized_user, only:[:create]
       render json: {errors: 'Invalid Email or Password'}, status: 401
     end
   end
-
 
   def destroy 
     session.delete :user_id 
