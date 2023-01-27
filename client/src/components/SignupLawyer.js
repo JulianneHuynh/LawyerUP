@@ -17,15 +17,15 @@ function SignupLawyer() {
   const [errors, setErrors] = useState([]);
   const [location, setLocation] = useState("");
 
-    function fetchCoords(rawValue) {
-        const formatted = encodeURIComponent(rawValue);
+  function fetchCoords(rawValue) {
+      const formatted = encodeURIComponent(rawValue);
 
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formatted}&key=${apiKey}`)
-        .then(response => response.json())
-        .then(data => {
-            setLocation(data["results"][0]["geometry"]["location"]);
-        });
-    };
+      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formatted}&key=${apiKey}`)
+      .then(response => response.json())
+      .then(data => {
+          setLocation(data["results"][0]["geometry"]["location"]);
+      });
+  };
 
   function onSubmit(e) {
     e.preventDefault();
@@ -65,9 +65,10 @@ function SignupLawyer() {
   }
 
   const handleChange = (e) => {
-    const { username, value } =e.target
+    const { username, value } = e.target
     setFormData({ ...formData, [username]: value})
-  }
+  };
+
   return (
     <div className="sign-up-form-container">
       <Form onSubmit={onSubmit}>
@@ -90,7 +91,7 @@ function SignupLawyer() {
       <label>
         Date of Birth
       </label>
-      <input placeholder='Address' type='date' value={dateOfBirth} onchange={(e) => setAddress(e.target.value)} />
+      <input placeholder='Date of Birth' type='date' value={dateOfBirth} onchange={(e) => setDateOfBirth(e.target.value)} />
 
       <label>
         Address
