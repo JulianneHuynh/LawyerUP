@@ -2,7 +2,10 @@ import React,  {useState} from 'react';
 // import {useHistory} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 
-function SignupLawyer() {
+function SignupLawyer({
+  apiKey,
+  setUser
+}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
@@ -30,24 +33,25 @@ function SignupLawyer() {
   function onSubmit(e) {
     e.preventDefault();
     const lawyer = {
-      name,
-      email, 
-      dateOfBirth, 
-      address,
-      location,
-      password,
-      profilePicture,
-      specialty,
-      lawFirm,
-      almaMater,
-      boardCertification
+      "name": name,
+      "email": email, 
+      "date_of_birth": dateOfBirth, 
+      "address": address,
+      "location": location,
+      "password": password,
+      "profile_picture": profilePicture,
+      "specialty": specialty,
+      "law_firm": lawFirm,
+      "alma_mater": almaMater,
+      "board_certification": boardCertification,
+      "is_lawyer?": true
     };
 
       console.log(JSON.stringify(lawyer));
       fetchCoords(address);
       console.log(JSON.stringify(lawyer));
 
-    fetch(`/lawyers`,{
+    fetch(`/users`,{
       method:'POST',
       headers:{'Content-Type': 'application/json'},
       body:JSON.stringify(lawyer)
@@ -55,7 +59,8 @@ function SignupLawyer() {
     .then(res => {
       if(res.ok){
         res.json().then(lawyer => {
-          // history.push(`/lawyers/${lawyer.id}`)
+          setUser(lawyer);
+          localStorage.setItem('user', lawyer);
         })
       }else {
         res.json().then(json => setErrors(Object.entries(json.errors)))
@@ -63,11 +68,6 @@ function SignupLawyer() {
     })
 
   }
-
-  const handleChange = (e) => {
-    const { username, value } = e.target
-    setFormData({ ...formData, [username]: value})
-  };
 
   return (
     <div className="sign-up-form-container">
@@ -81,7 +81,7 @@ function SignupLawyer() {
       <label>
         Email
       </label>
-      <input placeholder='JohnDoe123@gmail.com' type='text' value={email} onchange={(e) => setEmail(e.target.value)} />
+      <input placeholder='JohnDoe123@gmail.com' type='text' value={email} onChange={(e) => setEmail(e.target.value)} />
 
       <label>
         Password
@@ -91,37 +91,37 @@ function SignupLawyer() {
       <label>
         Date of Birth
       </label>
-      <input placeholder='Date of Birth' type='date' value={dateOfBirth} onchange={(e) => setDateOfBirth(e.target.value)} />
+      <input type='date' value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
 
       <label>
         Address
       </label>
-      <input placeholder='Address' type='text' value={address} onchange={(e) => setAddress(e.target.value)} />
+      <input placeholder='Address' type='text' value={address} onChange={(e) => setAddress(e.target.value)} />
 
       <label>
         Profile Picture
       </label>
-      <input placeholder='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Red_Panda_%2824986761703%29.jpg/2880px-Red_Panda_%2824986761703%29.jpg' type='text' value={profilePicture} onchange={(e) => setProfilePicture(e.target.value)} />
+      <input placeholder='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Red_Panda_%2824986761703%29.jpg/2880px-Red_Panda_%2824986761703%29.jpg' type='text' value={profilePicture} onChange={(e) => setProfilePicture(e.target.value)} />
 
         <label>
           Specialty
         </label>
-        <input type='text' specialty='specialty' value={specialty} onchange={(e) => setSpecialty(e.target.value)} />
+        <input type='text' specialty='specialty' value={specialty} onChange={(e) => setSpecialty(e.target.value)} />
 
         <label>
           Law Firm
         </label>
-        <input placeholder='Akerman LLP' type='text' value={lawFirm} onchange={(e) => setLawFirm(e.target.value)} />
+        <input placeholder='Akerman LLP' type='text' value={lawFirm} onChange={(e) => setLawFirm(e.target.value)} />
 
         <label>
           Alma Mater
         </label>
-        <input placeholder='New York University' type='text' value={almaMater} onchange={(e) => setAlmaMater(e.target.value)} />
+        <input placeholder='New York University' type='text' value={almaMater} onChange={(e) => setAlmaMater(e.target.value)} />
 
         <label>
            Board Certification
         </label>
-        <input type='text' value={boardCertification} onchange={(e) => setBoardCertification(e.target.value)} />
+        <input type='text' value={boardCertification} onChange={(e) => setBoardCertification(e.target.value)} />
 
         <input type= 'submit' value ='Sign Up!' />
       </Form>

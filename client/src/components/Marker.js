@@ -3,27 +3,10 @@ import { useState } from "react";
 function Marker({
     map,
     lawyers,
-    setSelectedLawyer,
-    apiKey
+    setSelectedLawyer
 }) {
 
     const [lawyerCoords, setLawyerCoords] = useState({});
-    
-    function format(string) {
-        let forURL = string.split(" ");
-        let formatted = forURL.join("+");
-        
-        console.log(formatted);
-        fetchCoords(formatted);
-    };
-
-    function fetchCoords(formatted) {
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formatted}&key=${apiKey}`)
-        .then(response => response.json())
-        .then(data => {
-            setLawyerCoords(data["results"][0]["geometry"]["location"]);
-        });
-    };
 
     const renderMarkers = lawyers.map((lawyer) => {
 
@@ -38,7 +21,7 @@ function Marker({
             `
 
         const marker = new window.google.maps.Marker({
-            position: lawyerCoords,
+            position: lawyer.location,
             map: map
         });
 

@@ -27,7 +27,7 @@ function AccountSide({
         if (user.profile_picture) {
             return (
                 <>
-                    <img src={user.profile_picture} className="profile-thumbnail"/>
+                    <img src={user.profile_picture} className="profile-thumbnail" onClick={() => handleShowAccountInfo()}/>
                     <Offcanvas placement={"end"} show={showAccountInfo} onHide={handleCloseAccountInfo}>
                         <Offcanvas.Header closeButton>
                             <Link to="/account-center">

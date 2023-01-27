@@ -17,10 +17,17 @@ function App() {
   const mapsApiKey = "AIzaSyDqQrYQMcH8E9yBZ5GVMCjLntOyqwb9SnI";
 
   const [selectedLawyer, setSelectedLawyer] = useState(0);
-  const [lawyers, setLawyers] = useState([]);
+  // const [lawyers, setLawyers] = useState([]);
   const [user, setUser] = useState(null);
   const [appointments, setAppointments] = useState([]);
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      setUser(loggedInUser);
+    }
+  }, []);
 
 // id user is set to state it'll help with conditional rendering
 // if user is in state than the rest of the navigation will load
@@ -92,17 +99,16 @@ const updateAppointment = (updatedAppointment) => setAppointments(current => {
   //     }
   //   })
   // },[])
-  // const lawyers = [
-  //     {
-  //         "id": 2,
-  //         "location": { "lat": 40.747070, "lng": -73.756290 },
-  //         "name": "Idris Elba",
-  //         "profile_picture": "https://d26oc3sg82pgk3.cloudfront.net/files/media/edit/image/9166/square_thumb%402x.jpg",
-  //         "specialty": "Real Estate Law"
-  //     }
-  // ];
 
-
+  const lawyers = [
+      {
+          "id": 2,
+          "location": { "lat": 40.747070, "lng": -73.756290 },
+          "name": "Idris Elba",
+          "profile_picture": "https://d26oc3sg82pgk3.cloudfront.net/files/media/edit/image/9166/square_thumb%402x.jpg",
+          "specialty": "Real Estate Law"
+      }
+  ];
 
   return (
 
@@ -140,6 +146,7 @@ const updateAppointment = (updatedAppointment) => setAppointments(current => {
             <SignupLawyer 
               user={user}
               setUser={setUser}
+              apiKey={mapsApiKey}
             />
           </Route>
 

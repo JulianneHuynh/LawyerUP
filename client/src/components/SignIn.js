@@ -25,6 +25,7 @@ function SignIn({
             if(res.ok){
                 res.json().then(user => {
                     setUser(user);
+                    localStorage.setItem('user', user);
                     // history.push("/");
                 })
             } else {

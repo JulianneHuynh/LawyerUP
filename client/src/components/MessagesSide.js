@@ -25,7 +25,7 @@ function MessagesSide() {
 
             <Offcanvas placement={"end"} show={showMessages} onHide={handleCloseMessages}>
                 <Offcanvas.Header closeButton>
-                    <Link to="/messaging-center">
+                    <Link to="/messaging-center" onClick={handleCloseMessages}>
                         <Offcanvas.Title>My Messages</Offcanvas.Title>
                     </Link>
                 </Offcanvas.Header>
@@ -34,7 +34,7 @@ function MessagesSide() {
                 </Offcanvas.Body>
 
                 <Offcanvas.Header>
-                    <Link to="/appointment-center">
+                    <Link to="/appointment-center" onClick={handleCloseMessages}>
                         <Offcanvas.Title>My Appointments</Offcanvas.Title>
                     </Link>
                 </Offcanvas.Header>
