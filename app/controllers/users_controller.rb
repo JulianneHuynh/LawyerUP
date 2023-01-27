@@ -6,14 +6,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find( params[:id] )
-    render json: user, status: :ok 
+    # user = User.find(session[:user_id])
+    # user = User.find( params[:id] )
+    # current_user checks to see if user is in session
+    render json: current_user, status: :ok 
   end
 
   def create 
     user = User.create!(user_params)
-    
     session[:user_id] = user.id
+    # id gets saved in session
     render json: user, status: :created
 
   end

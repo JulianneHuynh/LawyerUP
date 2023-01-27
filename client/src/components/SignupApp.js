@@ -1,26 +1,38 @@
 import React, {useState} from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"
 
 import SignupClient from "./SignupClient";
 import SignupLawyer from "./SignupLawyer";
 
 function SignupApp() {
-  const [page, setPage] = useState("/")
+  const navigate = useNavigate();
+
+  
+  // const [page, setPage] = useState("/")
 
   return (
-    <div className="SignupApp">
-     <NavBar onChangePage={setPage} />
-      <Routes> 
-         <Route path="/signupClient" element={<SignupClient/>}/>
+    <div>
+        <h1> Sign Up as a Client or Lawyer!</h1>
+        <br />
+        <button onClick={() => navigate('/SignupClient')}> Client </button>
+        <br /> 
+        <button onClick={() => navigate('/SignupLawyer')}> Lawyer </button>
+    </div>
 
-         <Route path= "/signupLawyer" element={<SignupLawyer/>}/>
+
+    // <div className="SignupApp">
+    //  <NavBar onChangePage={setPage} />
+    //   <div> 
+    //      <Route path="/signupClient" element={<SignupClient/>}/>
+
+    //      <Route path= "/signupLawyer" element={<SignupLawyer/>}/>
            
-         <Route path= "*" element={<h1> Not Found </h1>}/>
+    //      <Route path= "*" element={<h1> Not Found </h1>}/>
         
-      </Routes>   
+    //   </Routes>   
          
 
-    </div>
+    // </div>
   );
 }
 

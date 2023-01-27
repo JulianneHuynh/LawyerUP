@@ -9,13 +9,87 @@ import MessagingCenter from "./components/MessagingCenter";
 import AccountCenter from "./components/AccountCenter";
 import AppointmentCenter from "./components/AppointmentCenter";
 import LawyerProfile from "./components/LawyerProfile";
+import SignIn from "./components/SignIn";
 
 function App() {
 
   const [selectedLawyer, setSelectedLawyer] = useState(0);
   const [lawyers, setLawyers] = useState([]);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
+  const [appointments, setAppointments] = useState([])
 
+// id user is set to state it'll help with conditional rendering
+// if user is in state than the rest of the navigation will load
+// if user isnt in session 
+  useEffect(() => {
+    fetch('/authorized')
+    .then(res => {
+      if(res.ok) {
+        res.json().then(user => {
+          setUser(user)
+          fetchAppointment()
+      })
+    }else {
+      res.json().then(() =>setUser(null))
+    }
+    })
+  },[])
+
+  const fetchAppointment = () => {
+    fetch('/appointments')
+    .then(res => {
+      if(res.ok){
+        res.json().then(setAppointments)
+      }else {
+        res.json().then(data => setErrors(data.error))
+      }
+    })
+  }
+
+const addAppointment = (appointment) => setAppointments(current => [...current,appointment])
+
+const updateAppointment = (updatedAppointment) => setAppointments(current => {
+  return current.map(appointment => {
+   if(appointment.id === updatedAppointment.id){
+     return updatedAppointment
+   } else {
+     return Appointment
+   }
+  })
+})
+
+if(errors) return <h1>{errors}</h1>
+if(!user) return(
+  <>
+  <GlobalStyle/>
+  <SignIn updatedUser={updateUser}/>
+  </>
+)
+
+// need to route for addAppointment
+// update Appointment 
+
+/* <Switch>
+<Route  path='/appointments/create'>
+        <ProductionForm addAppointment={addAppointment}/>
+      </Route>
+    {/* TODO make edit component */
+    //}
+      // <Route  path='/appointments/:id/patch'>
+      //   <EditProductionForm updateAppointment={updateAppointment}/>
+      // </Route> 
+
+
+  // useEffect(() => {
+  //   fetch('/appointmens')
+  //   .then(res => {
+  //     if(res.ok){
+  //       res.json().then(setAppointments)
+  //     }else {
+  //       res.json().then(data => setErrors(data.error))
+  //     }
+  //   })
+  // },[])
   // const lawyers = [
   //     {
   //         "id": 2,
