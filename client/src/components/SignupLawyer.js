@@ -1,5 +1,5 @@
 import React,  {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+// import {useHistory} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 
 function SignupLawyer() {
@@ -11,16 +11,20 @@ function SignupLawyer() {
       law_firm:'',
       alma_mater:'',
       years_in_practice:'',
-      location:'',
+      address:'',
       password:'',
-  })
-  const [errors, setErrors] = useState([])
-  const history = useHistory()
+      date_of_birth:'',
+      profile_picture:'',
+      board_certification:''
+  });
 
-  const {name, username, email, specialty, law_firm, alma_mater, years_in_practice, location, password} = formData
+  const [errors, setErrors] = useState([]);
+  // const history = useHistory();
 
-  function onSubmit(e){
-    e.preventDefault()
+  const {name, username, email, specialty, law_firm, alma_mater, years_in_practice, location, password} = formData;
+
+  function onSubmit(e) {
+    e.preventDefault();
     const lawyer = {
       name,
       username,
@@ -29,9 +33,12 @@ function SignupLawyer() {
       law_firm,
       alma_mater,
       years_in_practice,
-      location,
-      password, 
-    }
+      address,
+      password,
+      date_of_birth,
+      profile_picture,
+      board_certification
+    };
 
     fetch(`/lawyers`,{
       method:'POST',
@@ -41,7 +48,7 @@ function SignupLawyer() {
     .then(res => {
       if(res.ok){
         res.json().then(lawyer => {
-          history.push(`/lawyers/${lawyer.id}`)
+          // history.push(`/lawyers/${lawyer.id}`)
         })
       }else {
         res.json().then(json => setErrors(Object.entries(json.errors)))
