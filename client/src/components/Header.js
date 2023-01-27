@@ -1,7 +1,5 @@
-import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import { Link } from "react-router-dom";
-import SignupApp from "./SignupApp";
 
 import UserWidget from "./UserWidget";
 

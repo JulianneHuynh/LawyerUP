@@ -6,8 +6,6 @@ function Marker({
     setSelectedLawyer
 }) {
 
-    const [lawyerCoords, setLawyerCoords] = useState({});
-
     const renderMarkers = lawyers.map((lawyer) => {
 
         const content = 

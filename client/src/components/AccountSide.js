@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import AccountInfo from "./AccountInfo";
 import SignIn from "./SignIn";
 import SignupApp from "./SignupApp";
-import SignupClient from "./SignupClient";
-import SignupLawyer from "./SignupLawyer";
 
 function AccountSide({
     user,
