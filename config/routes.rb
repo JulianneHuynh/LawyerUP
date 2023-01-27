@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :appointments
   resources :messages, only: [:index, :show, :create]
 
-  post '/signin', to: 'users#signin'
+  # post '/signin', to: 'users#signin'
 
 
   get '/authorize', to: "users#show"

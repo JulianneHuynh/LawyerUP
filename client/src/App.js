@@ -38,11 +38,11 @@ function App() {
   //   })
   // }, [])
 
-  useEffect(() => {
-    fetch("http://localhost:3000/lawyers")
-    .then(res => res.json())
-    .then((lawyerArray) => setLawyers(lawyerArray))
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/lawyers")
+  //   .then(res => res.json())
+  //   .then((lawyerArray) => setLawyers(lawyerArray))
+  // }, []);
 
   const fetchAppointment = () => {
     fetch('/appointments')

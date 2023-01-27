@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-// import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
 
 function SignIn({
     user,
@@ -11,16 +10,16 @@ function SignIn({
     const [errors, setErrors] = useState([]);
     
     function onSubmit(e){
-        e.preventDefault()
+        e.preventDefault();
         const formData = {
             "email": email, 
             "password": password
         };
         // signs user in 
-        fetch('/signin', {
-            method:'POST',
-            header:{'Content-Type': 'application/json'}, 
-            body: JSON.stringify(formData)
+        fetch('http://localhost:3000/signin', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify(formData),
         })
         .then(res => {
             if(res.ok){
@@ -29,13 +28,14 @@ function SignIn({
                     // history.push("/");
                 })
             } else {
-                res.json().then(json => setErrors(json.error))
+                res.json().then(data => setErrors(data.errors))
             };
         });
+        console.log(formData);
     };
 
     return (
-        <>
+        <div className="sign-up-form-container">
             <form onSubmit={(e) => onSubmit(e)}>
                 <label>
                     Email
@@ -49,8 +49,8 @@ function SignIn({
 
                 <input type='submit' value="Sign In!" />
             </form>
-                {errors&&<div>{errors}</div>}
-        </>
+                <div>{errors}</div>
+        </div>
     );
 };
 

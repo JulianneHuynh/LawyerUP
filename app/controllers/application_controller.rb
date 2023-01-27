@@ -9,11 +9,11 @@ class ApplicationController < ActionController::API
   # checks to see if user is signed in to protect the authorization of routes
   # able to add more restrictions ex:admin
   # runs a method of choice before every single action available
-  # before_action :authorized_user
+  before_action :authorized_user
 
   # current_user and authorized_user 
   def current_user
-    user = User.find_by(id:session[:user_id])
+    user = User.find_by(id: session[:user_id])
     user
   end 
 
