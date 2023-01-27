@@ -1,25 +1,29 @@
 import React, {useState} from 'react';
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import SignupClient from "./SignupClient";
 import SignupLawyer from "./SignupLawyer";
 
-function SignupApp() {
-  const navigate = useNavigate();
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
-  
-  // const [page, setPage] = useState("/")
+function SignupApp({
+  handleCloseAccountInfo
+}) {
 
   return (
+    <>
     <div>
         <h1> Sign Up as a Client or Lawyer!</h1>
         <br />
-        <button onClick={() => navigate('/SignupClient')}> Client </button>
+        <button onClick={console.log("hi")}> Client </button>
         <br /> 
-        <button onClick={() => navigate('/SignupLawyer')}> Lawyer </button>
+        <Link to="/sign-up-lawyer">
+          <button onClick={() => handleCloseAccountInfo()}> Lawyer </button>
+        </Link>
     </div>
 
-
+  </>
     // <div className="SignupApp">
     //  <NavBar onChangePage={setPage} />
     //   <div> 

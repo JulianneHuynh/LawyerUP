@@ -5,19 +5,22 @@ import SignupApp from "./SignupApp";
 
 import UserWidget from "./UserWidget";
 
-function Header() {
+function Header({
+    user,
+    setUser
+}) {
     return (
         <div id="header">
             <div id="logo-container">
                 <Link to="/">
                     <Image id="logo" src={require('../assets/lawyer-up-logo.png')}/>
                 </Link>
-                <div> 
-                    <UserWidget/>
-                </div>
-                    <SignupApp/>
-             </div>
-       </div>
+            </div> 
+                    <UserWidget
+                        user={user}
+                        setUser={setUser}
+                    />
+        </div>
     );
 };
 

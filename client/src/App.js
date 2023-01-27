@@ -10,30 +10,38 @@ import AccountCenter from "./components/AccountCenter";
 import AppointmentCenter from "./components/AppointmentCenter";
 import LawyerProfile from "./components/LawyerProfile";
 import SignIn from "./components/SignIn";
+import SignupLawyer from "./components/SignupLawyer";
 
 function App() {
 
   const [selectedLawyer, setSelectedLawyer] = useState(0);
   const [lawyers, setLawyers] = useState([]);
   const [user, setUser] = useState(null);
-  const [appointments, setAppointments] = useState([])
+  const [appointments, setAppointments] = useState([]);
+  const [errors, setErrors] = useState([]);
 
 // id user is set to state it'll help with conditional rendering
 // if user is in state than the rest of the navigation will load
 // if user isnt in session 
+  // useEffect(() => {
+  //   fetch('/authorized')
+  //   .then(res => {
+  //     if(res.ok) {
+  //       res.json().then(user => {
+  //         setUser(user)
+  //         fetchAppointment()
+  //     })
+  //   } else {
+  //     res.json().then(() =>setUser(null))
+  //   }
+  //   })
+  // }, [])
+
   useEffect(() => {
-    fetch('/authorized')
-    .then(res => {
-      if(res.ok) {
-        res.json().then(user => {
-          setUser(user)
-          fetchAppointment()
-      })
-    }else {
-      res.json().then(() =>setUser(null))
-    }
-    })
-  },[])
+    fetch("http://localhost:3000/lawyers")
+    .then(res => res.json())
+    .then((lawyerArray) => setLawyers(lawyerArray))
+  }, []);
 
   const fetchAppointment = () => {
     fetch('/appointments')
@@ -53,18 +61,10 @@ const updateAppointment = (updatedAppointment) => setAppointments(current => {
    if(appointment.id === updatedAppointment.id){
      return updatedAppointment
    } else {
-     return Appointment
+     return appointment
    }
   })
 })
-
-if(errors) return <h1>{errors}</h1>
-if(!user) return(
-  <>
-  <GlobalStyle/>
-  <SignIn updatedUser={updateUser}/>
-  </>
-)
 
 // need to route for addAppointment
 // update Appointment 
@@ -100,25 +100,20 @@ if(!user) return(
   //     }
   // ];
 
-  useEffect(() => {
-    fetch("http://localhost:3000/lawyers")
-    .then(res => res.json())
-    .then((lawyerArray) => setLawyers(lawyerArray))
-  }, [])
+
 
   return (
 
     <>
 
-      <Header />
+      <Header 
+        setUser={setUser}
+        user={user}
+      />
 
       <div id="app-body">
 
         <Switch>
-          
-          {/* <Route path="/signin">
-            <SignIn />
-          </Route> */}
 
           <Route path="/account-center">
             <AccountCenter />
@@ -136,6 +131,13 @@ if(!user) return(
           <Route path="/lawyer">
             <LawyerProfile 
               selectedLawyer={selectedLawyer}
+            />
+          </Route>
+
+          <Route path="/sign-up-lawyer">
+            <SignupLawyer 
+              user={user}
+              setUser={setUser}
             />
           </Route>
 
