@@ -3,42 +3,49 @@ import React,  {useState} from 'react';
 import Form from 'react-bootstrap/Form';
 
 function SignupLawyer() {
-  const [formData, setFormData] = useState({
-      name:'',
-      username:'',
-      email:'',
-      specialty:'',
-      law_firm:'',
-      alma_mater:'',
-      years_in_practice:'',
-      address:'',
-      password:'',
-      date_of_birth:'',
-      profile_picture:'',
-      board_certification:''
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [profilePicture, setProfilePicture] = useState("");
+  const [specialty, setSpecialty] = useState("");
+  const [lawFirm, setLawFirm] = useState("");
+  const [almaMater, setAlmaMater] = useState("");
+  const [boardCertification, setBoardCertification] = useState("");
 
   const [errors, setErrors] = useState([]);
-  // const history = useHistory();
+  const [location, setLocation] = useState("");
 
-  const {name, username, email, specialty, law_firm, alma_mater, years_in_practice, location, password, address, date_of_birth, profile_picture, board_certification} = formData;
+    function fetchCoords(rawValue) {
+        const formatted = encodeURIComponent(rawValue);
+
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formatted}&key=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            setLocation(data["results"][0]["geometry"]["location"]);
+        });
+    };
 
   function onSubmit(e) {
     e.preventDefault();
     const lawyer = {
       name,
-      username,
       email, 
-      specialty,
-      law_firm,
-      alma_mater,
-      years_in_practice,
+      dateOfBirth, 
       address,
+      location,
       password,
-      date_of_birth,
-      profile_picture,
-      board_certification
+      profilePicture,
+      specialty,
+      lawFirm,
+      almaMater,
+      boardCertification
     };
+
+      console.log(JSON.stringify(lawyer));
+      fetchCoords(address);
+      console.log(JSON.stringify(lawyer));
 
     fetch(`/lawyers`,{
       method:'POST',
@@ -65,50 +72,55 @@ function SignupLawyer() {
     <div className="sign-up-form-container">
       <Form onSubmit={onSubmit}>
 
-        <label>
-          Name
-        </label>
-        <input placeholder='Jane Doe'  type='text' legal_name='name' value={name} onChange={handleChange} />
+      <label>
+        Name
+      </label>
+      <input placeholder='John Doe' type='text' value={name} onChange={(e) => setName(e.target.value)} />
 
-        <label>
-          Username 
-        </label>
-        <input placeholder='janedoe123' type='text' legal_name='username' value={username} onChange={handleChange} />
+      <label>
+        Email
+      </label>
+      <input placeholder='JohnDoe123@gmail.com' type='text' value={email} onchange={(e) => setEmail(e.target.value)} />
 
-        <label>
-          Email
-        </label>
-        <input placeholder='janedoe123@gmail.com' type='text' email='email' value={email} onchange={handleChange} />
+      <label>
+        Password
+      </label> 
+      <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+
+      <label>
+        Date of Birth
+      </label>
+      <input placeholder='Address' type='date' value={dateOfBirth} onchange={(e) => setAddress(e.target.value)} />
+
+      <label>
+        Address
+      </label>
+      <input placeholder='Address' type='text' value={address} onchange={(e) => setAddress(e.target.value)} />
+
+      <label>
+        Profile Picture
+      </label>
+      <input placeholder='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Red_Panda_%2824986761703%29.jpg/2880px-Red_Panda_%2824986761703%29.jpg' type='text' value={profilePicture} onchange={(e) => setProfilePicture(e.target.value)} />
 
         <label>
           Specialty
         </label>
-        <input type='text' specialty='specialty' value={specialty} onchange={handleChange} />
+        <input type='text' specialty='specialty' value={specialty} onchange={(e) => setSpecialty(e.target.value)} />
 
         <label>
           Law Firm
         </label>
-        <input placeholder='Akerman LLP' type='text' law_firm='law_firm' value={law_firm} onchange={handleChange} />
+        <input placeholder='Akerman LLP' type='text' value={lawFirm} onchange={(e) => setLawFirm(e.target.value)} />
 
         <label>
           Alma Mater
         </label>
-        <input placeholder='New York University' type='text' alma_mater='alma_mater' value={alma_mater} onchange={handleChange} />
+        <input placeholder='New York University' type='text' value={almaMater} onchange={(e) => setAlmaMater(e.target.value)} />
 
         <label>
-          Years of Experience
+           Board Certification
         </label>
-        <input type='text' years_in_practice='years_in_practice' value={years_in_practice} onchange={handleChange} />
-
-        <label>
-          Location
-        </label>
-        <input placeholder='Zip Code' type='text' location='location' value={location} onchange={handleChange} />
-
-        <label>
-          Password
-        </label> 
-        <input type='text' password='password' value={password} onChange={handleChange} />
+        <input type='text' value={boardCertification} onchange={(e) => setBoardCertification(e.target.value)} />
 
         <input type= 'submit' value ='Sign Up!' />
       </Form>

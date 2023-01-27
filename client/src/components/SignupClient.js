@@ -6,27 +6,28 @@ import Form from "react-bootstrap/Form";
 function SignupClient({
   setUser
 }) {
-  const [formData, setFormData] = useState({
-      name:'',
-      username:'',
-      email:'',
-      address:'',
-      password:'',
-  })
   const [errors, setErrors] = useState([]);
-  // const history = useHistory()
-
-  const {name, username, email, address, password} = formData
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState(Date.now());
+  const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [profilePicture, setProfilePicture] = useState("");
+  const [location, setLocation] = useState("");
 
   function onSubmit(e){
     e.preventDefault()
     const client = {
       name,
-      username,
       email, 
+      dateOfBirth, 
       address,
-      password 
+      location,
+      password,
+      profilePicture 
     }
+
+      console.log(JSON.stringify(client));
 
     fetch(`/users`,{
       method:'POST',
@@ -45,10 +46,6 @@ function SignupClient({
 
   }
 
-  const handleChange = (e) => {
-    const { username, value } =e.target
-    setFormData({ ...formData, [username]: value})
-  }
   return (
     <>
     <Form onSubmit={onSubmit}>
@@ -56,30 +53,34 @@ function SignupClient({
       <label>
         Name
       </label>
-      <input placeholder='John Doe' type='text' value={name} onChange={handleChange} />
-
-      <label>
-        Username 
-      </label>
-      <input placeholder='JohnDoe123' type='text' value={username} onChange={handleChange} />
+      <input placeholder='John Doe' type='text' value={name} onChange={(e) => setName(e.target.value)} />
 
       <label>
         Email
       </label>
-      <input placeholder='JohnDoe123@gmail.com' type='text' value={email} onchange={handleChange} />
-
-      <label>
-        Location
-      </label>
-      <input placeholder='Zip Code' type='text' location='location' value={address} onchange={handleChange} />
+      <input placeholder='JohnDoe123@gmail.com' type='text' value={email} onchange={(e) => setEmail(e.target.value)} />
 
       <label>
         Password
       </label> 
-      <input type='password' value={password} onChange={handleChange} />
+      <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
 
+      <label>
+        Date of Birth
+      </label>
+      <input placeholder='Address' type='date' value={dateOfBirth} onchange={(e) => setAddress(e.target.value)} />
 
-      <input type= 'submit' value ='Sign Up!' />
+      <label>
+        Address
+      </label>
+      <input placeholder='Address' type='text' location='location' value={address} onchange={(e) => setAddress(e.target.value)} />
+
+      <label>
+        Profile Picture
+      </label>
+      <input placeholder='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Red_Panda_%2824986761703%29.jpg/2880px-Red_Panda_%2824986761703%29.jpg' type='text' value={profilePicture} onchange={(e) => setProfilePicture(e.target.value)} />
+
+      <input type='submit' value ='Sign Up!' />
     </Form>
     {errors&&<div>{errors}</div>}
     </>
