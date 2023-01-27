@@ -42,6 +42,7 @@ address = ['310 Hillside Avenue, New Hyde Park, NY 11040', '109 Emerson Ave, Flo
                       alma_mater: nil,
                       board_certification: nil,
                       password: "123"
+                      location: nil
                       )}
 
 10.times{User.create( name: Faker::Name.unique.name,
@@ -54,7 +55,8 @@ address = ['310 Hillside Avenue, New Hyde Park, NY 11040', '109 Emerson Ave, Flo
                       law_firm: firms.sample,
                       alma_mater: Faker::University.name,
                       board_certification: states.sample,
-                      password: "123"
+                      password: "123",
+                      location: nil
                       )}
 
 puts "Users Created"

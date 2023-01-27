@@ -13,17 +13,18 @@ function SignupApp({
 
   return (
     <>
-    <div>
-        <h1> Sign Up as a Client or Lawyer!</h1>
-        <br />
-        <button onClick={console.log("hi")}> Client </button>
-        <br /> 
-        <Link to="/sign-up-lawyer">
-          <button onClick={() => handleCloseAccountInfo()}> Lawyer </button>
-        </Link>
-    </div>
-
-  </>
+      <div>
+          <h1> Sign Up as a Client or Lawyer!</h1>
+          <br />
+          <Link to="/sign-up-client">
+            <button onClick={() => handleCloseAccountInfo()}> Client </button>
+          </Link>
+          <br /> 
+          <Link to="/sign-up-lawyer">
+            <button onClick={() => handleCloseAccountInfo()}> Lawyer </button>
+          </Link>
+      </div>
+    </>
     // <div className="SignupApp">
     //  <NavBar onChangePage={setPage} />
     //   <div> 

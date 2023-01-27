@@ -11,6 +11,7 @@ import AppointmentCenter from "./components/AppointmentCenter";
 import LawyerProfile from "./components/LawyerProfile";
 import SignIn from "./components/SignIn";
 import SignupLawyer from "./components/SignupLawyer";
+import SignupClient from "./components/SignupClient";
 
 function App() {
 
@@ -136,6 +137,13 @@ const updateAppointment = (updatedAppointment) => setAppointments(current => {
 
           <Route path="/sign-up-lawyer">
             <SignupLawyer 
+              user={user}
+              setUser={setUser}
+            />
+          </Route>
+
+          <Route path="/sign-up-client">
+            <SignupClient 
               user={user}
               setUser={setUser}
             />
