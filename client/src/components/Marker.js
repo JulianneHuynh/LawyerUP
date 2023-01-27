@@ -38,7 +38,6 @@ function Marker({
 
     return (
         <>
-            {console.log(lawyerCoords)}
             {renderMarkers}
         </>
     );
