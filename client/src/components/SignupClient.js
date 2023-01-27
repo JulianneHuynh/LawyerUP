@@ -1,7 +1,5 @@
-import React,  {useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import React,  {useState} from 'react';
 import Form from "react-bootstrap/Form";
-// import {Form} from '../styled/Form'
 
 function SignupClient({
   setUser

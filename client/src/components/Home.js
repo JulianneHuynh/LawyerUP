@@ -39,11 +39,6 @@ function Home ({
                 setPos={setPos}
             />
 
-            {/* <SignIn 
-                user={user}
-                setUser={setUser}
-            /> */}
-
             <Wrapper 
                 apiKey={apiKey} 
                 render={render}

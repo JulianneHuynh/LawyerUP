@@ -6,8 +6,9 @@ function UserPage(){
   const [loading, setLoading] = useState(true)
   const[errors, setErrors] = useState(false)
 
-  const params = useParams()
-    const {id} = params
+  const params = useParams();
+  const {id} = params;
+    
     useEffect(()=>{
         fetch(`/users/${id}`)
         .then(res => {
@@ -20,7 +21,6 @@ function UserPage(){
                 res.json().then(data => setErrors(data.error))
             }
         })
-       
     },[])
 
     if(loading) return <h1>Loading...</h1>
