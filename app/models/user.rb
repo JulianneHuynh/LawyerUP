@@ -2,8 +2,6 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  # has_many :appointments
-
   has_many :my_appointments, class_name: "Appointment", foreign_key: "client_id"
   has_many :meetings, class_name: "Appointment", foreign_key: "lawyer_id"
 
@@ -29,7 +27,7 @@ class User < ApplicationRecord
   # .authenticate
   #def authenticate(password)
   #   oldPassword = BCrypt::Password.new(self.password_digest)
-  #   BCrypt::Engine.hash_secret(password, oldOassword.salt)
+  #   BCrypt::Engine.hash_secret(password, oldPassword.salt)
   #   self.password_digest == newHash
   #end
   

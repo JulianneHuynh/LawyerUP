@@ -3,6 +3,7 @@ import Map from "./Map";
 import SpecialtyFilter from "./SpecialtyFilter";
 import Spinner from "react-bootstrap/Spinner";
 import Marker from "./Marker";
+import SignIn from "./SignIn";
 
 import { Wrapper } from "@googlemaps/react-wrapper";
 
@@ -10,7 +11,9 @@ import { useEffect, useState } from "react";
 
 function Home ({
     lawyers,
-    setSelectedLawyer
+    setSelectedLawyer,
+    user,
+    setUser
 }) {
 
     const apiKey = "AIzaSyDqQrYQMcH8E9yBZ5GVMCjLntOyqwb9SnI";
@@ -40,7 +43,10 @@ function Home ({
                 setPos={setPos}
             />
 
-            {/* <SpecialtyFilter /> */}
+            <SignIn 
+                user={user}
+                setUser={setUser}
+            />
 
             <Wrapper 
                 apiKey={apiKey} 
