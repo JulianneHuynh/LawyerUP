@@ -14,6 +14,7 @@ function App() {
 
   const [selectedLawyer, setSelectedLawyer] = useState(0);
   const [lawyers, setLawyers] = useState([]);
+  const [user, setUser] = useState([]);
 
   // const lawyers = [
   //     {
@@ -68,6 +69,8 @@ function App() {
             <Home 
               lawyers={lawyers}
               setSelectedLawyer={setSelectedLawyer}
+              user={user}
+              setUser={setUser}
             />
           </Route>
 

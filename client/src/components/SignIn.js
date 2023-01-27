@@ -1,61 +1,55 @@
-import React, {useState} from 'react'
-import { useHistory } from 'react-router'
+import React, {useState} from 'react';
+// import { useHistory } from 'react-router-dom';
 
-function SignIn() {
-    const [formData, setFormData] = useState({
-        email:'',
-        password:''
-    })
+function SignIn({
+    user,
+    setUser
+}) {
 
-    const [errors, setErrors] =usuState([])
-    const history = useHistory()
-
-    const {email, password} = 
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [errors, setErrors] = useState([]);
     
     function onSubmit(e){
         e.preventDefault()
-        const user = {
-            email, 
-            password
-        }
+        const formData = {
+            "email": email, 
+            "password": password
+        };
         // signs user in 
-        fetch(`/signin`, {
+        fetch('/signin', {
             method:'POST',
             header:{'Content-Type': 'application/json'}, 
-            body:JSON.stringify(user)
+            body: JSON.stringify(formData)
         })
         .then(res => {
             if(res.ok){
                 res.json().then(user => {
-                    history.push(`/users/${user.id}`)
-                    updateUser(user)
+                    setUser(user);
+                    // history.push("/");
                 })
-            }else {
+            } else {
                 res.json().then(json => setErrors(json.error))
-            }
-        })
-    }
+            };
+        });
+    };
 
-    const handleChange = (e) => {
-        const { email, value } = e.target
-        setFormData({...formData, [email]:value })
-    }
     return (
         <>
-        <Form onSubmit={onSubmit}>
-        <label>
-        Email
-        </label>
-        <input type='text' name='email' value={email} onChange={handleChange} />
-        
-        <label>
-        Password
-        </label>
-        <input type='text' name='password' value={password} onChange={handleChange} />
+            <form onSubmit={(e) => onSubmit(e)}>
+                <label>
+                    Email
+                </label>
+                <input type='text' placeholder="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                
+                <label>
+                    Password
+                </label>
+                <input type='text' placeholder="password" name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
 
-        <input type='submit' value="Sign In!" />
-        </Form>
-        {errors&&<div>{errors}</div>}
+                <input type='submit' value="Sign In!" />
+            </form>
+                {errors&&<div>{errors}</div>}
         </>
     );
 };
