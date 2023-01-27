@@ -14,6 +14,7 @@ import SignupLawyer from "./components/SignupLawyer";
 import SignupClient from "./components/SignupClient";
 
 function App() {
+  const mapsApiKey = "AIzaSyDqQrYQMcH8E9yBZ5GVMCjLntOyqwb9SnI";
 
   const [selectedLawyer, setSelectedLawyer] = useState(0);
   const [lawyers, setLawyers] = useState([]);
@@ -155,6 +156,7 @@ const updateAppointment = (updatedAppointment) => setAppointments(current => {
               setSelectedLawyer={setSelectedLawyer}
               user={user}
               setUser={setUser}
+              apiKey={mapsApiKey}
             />
           </Route>
 
