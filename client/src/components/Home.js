@@ -13,11 +13,10 @@ function Home ({
     lawyers,
     setSelectedLawyer,
     user,
-    setUser
+    setUser,
+    apiKey
 }) {
 
-    const apiKey = "AIzaSyDqQrYQMcH8E9yBZ5GVMCjLntOyqwb9SnI";
-    
     const render = (status) => {
         return (
             <Spinner /> 
@@ -43,10 +42,10 @@ function Home ({
                 setPos={setPos}
             />
 
-            <SignIn 
+            {/* <SignIn 
                 user={user}
                 setUser={setUser}
-            />
+            /> */}
 
             <Wrapper 
                 apiKey={apiKey} 

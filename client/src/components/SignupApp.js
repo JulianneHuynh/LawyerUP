@@ -1,26 +1,43 @@
 import React, {useState} from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import SignupClient from "./SignupClient";
 import SignupLawyer from "./SignupLawyer";
 
-function SignupApp() {
-  const [page, setPage] = useState("/")
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+
+function SignupApp({
+  handleCloseAccountInfo
+}) {
 
   return (
-    <div className="SignupApp">
-     <NavBar onChangePage={setPage} />
-      <Routes> 
-         <Route path="/signupClient" element={<SignupClient/>}/>
+    <>
+      <div>
+          <h1> Sign Up as a Client or Lawyer!</h1>
+          <br />
+          <Link to="/sign-up-client">
+            <button onClick={() => handleCloseAccountInfo()}> Client </button>
+          </Link>
+          <br /> 
+          <Link to="/sign-up-lawyer">
+            <button onClick={() => handleCloseAccountInfo()}> Lawyer </button>
+          </Link>
+      </div>
+    </>
+    // <div className="SignupApp">
+    //  <NavBar onChangePage={setPage} />
+    //   <div> 
+    //      <Route path="/signupClient" element={<SignupClient/>}/>
 
-         <Route path= "/signupLawyer" element={<SignupLawyer/>}/>
+    //      <Route path= "/signupLawyer" element={<SignupLawyer/>}/>
            
-         <Route path= "*" element={<h1> Not Found </h1>}/>
+    //      <Route path= "*" element={<h1> Not Found </h1>}/>
         
-      </Routes>   
+    //   </Routes>   
          
 
-    </div>
+    // </div>
   );
 }
 

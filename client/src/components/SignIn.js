@@ -45,7 +45,7 @@ function SignIn({
                 <label>
                     Password
                 </label>
-                <input type='text' placeholder="password" name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type='password' placeholder="password" name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
 
                 <input type='submit' value="Sign In!" />
             </form>

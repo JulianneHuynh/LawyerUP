@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   post '/signin', to: 'users#signin'
 
+
+  get '/authorize', to: "users#show"
+  # doesnt send info back, checks to see if session has anything in it
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy'
 
